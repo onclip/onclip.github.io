@@ -281,6 +281,8 @@ var saveAs=saveAs||function(e){"use strict";if("undefined"==typeof navigator||!/
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
  
+ _gaq.push(['_trackPageview', location.pathname ]);
+
   ga('create', 'UA-69508006-1', 'auto'); 
   if(id) { ga('send', 'pageview','download');} else {
    ga('send', 'pageview');
