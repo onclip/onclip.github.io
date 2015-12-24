@@ -632,7 +632,7 @@ var beReady=function(){
      
 	 alert(channelId);
 	
-	ajax(apiurl+"push","cid="+channelId+"&tk="+token+"&key="+key, function(res ,x ){
+	ajax(apiurl+"push","cid="+channelId+"&tk="+token+"&key="+key+"&id="+id, function(res ,x ){
 			if(res=="ok") {
 					hide("downloadbtn");
 			notice("잠시만 기다려 주세요.곧 파일 다운로드가 시작됩니다.");
