@@ -538,8 +538,10 @@ U.prototype.We=function(a,b){x("Firebase.resetPassword",2,2,arguments.length);fg
    var partState={};
    var partEnd=0;
    var token="";
-   var uid="";
+  
    var durl="";
+      var key="";
+
 
     var file = null;
     var appCaller;
@@ -613,6 +615,10 @@ function ajax(url,  data,callback) {
 		window.console && console.log(e);
 	}
 }; 
+function notice(text){
+	html("noticetext",text);
+		show("notice");
+}
 
 var beReady=function(){
 
@@ -626,7 +632,18 @@ var beReady=function(){
      
 	 alert(channelId);
 	
-	ajax(apiurl+"push","cid="+channelId+"&tk="+token, function(res ,x ){ alert(res);} );
+	ajax(apiurl+"push","cid="+channelId+"&tk="+token+"&key="+key, function(res ,x ){
+			if(res=="ok") {
+					hide("downloadbtn");
+			notice("잠시만 기다려 주세요.곧 파일 다운로드가 시작됩니다.");
+			//todo timeout 설정할것.
+			
+			} else {
+
+			notice("전송요청과정에 오류가 생겼습니다. 새로고침하여 다시 시도해주세요");
+			}
+	
+	} );
 	
 	// console.log(channelId);
 	 //firebase 에 저장하고.. 서버에 요청....
@@ -801,7 +818,7 @@ var startdownload=function(){
 	try{	Firebase.goOffline();}
 	catch (e){}
 				
-	if(token=="" || uid=="") {
+	if(token=="" || key=="") {
 			alert("파일정보가 부족합니다.새로고침을 시도해주세요.");
 			return;
 	}
@@ -858,10 +875,11 @@ var checkMsg=function(a){
 	if(state==-10){
 		
 		html("noticetext","파일정보가 없습니다. (발신자가 파일을 삭제했을 수 있습니다.파일을 다시 요청해보세요)");
+		show("notice");
 		try{
 	ga('send', 'event',"download", "fail", "nofile");
 	} catch(err) {}
-		show("notice");
+		
 		hide("downloadbtn");
 		hide("savebtn");
 			Firebase.goOffline();
@@ -1035,14 +1053,14 @@ ref.child('token').on("value", function(data) {
 	
 		});
 
-ref.child('uid').on("value", function(data) {
+ref.child('key').on("value", function(data) {
 	
 	if(data.exists())	{
-		uid=data.val();
+		key=data.val();
 
 		
 		
-		ref.child('uid').off("value",arguments.callee);
+		ref.child('key').off("value",arguments.callee);
 	}	
 	
 		});
