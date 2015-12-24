@@ -5,7 +5,266 @@
 </style><title>클립버드</title><style>
     td { text-align: left;white-space: nowrap }
     </style></head><body><header class="tile g--2 no-margin-vertical bg--deep-purple color--white">클립버드가 전달합니다.<span id=size><span></span></span></header><table class="g--2 no-margin-vertical card" style=margin-bottom:10px><tr class=table-header><td style="width:100px;font-weight: bold;">파일이름</td><td><div id=filename>불러오는중..</div></td></tr><tr id=coll><td style="font-weight: bold;">업로드&nbsp;</td><td><div id=upload>진행중입니다.</div></td></tr><tr id=col><td style="font-weight: bold;">다운로드&nbsp;</td><td><span id=download>?/?</span> <span id=ds></span></td></tr></table><button id=downloadbtn class="g--1 btn-raised btn--senconday btn--blue no-margin-vertical" style=font-size:16pt;font-family:inherit;display:none onclick=startdownload()>다운로드 시작<br><div style=font-size:8pt;font-family:inherit>(크롬 브라우져 필요)</div></button><div id=notice class="g--1 card no-margin-vertical bg--clouds" style=margin-bottom:10px><span id=noticetext>다운로드 대기중</span><span id=downloadlink style=display:none>(다운로드에 문제가 있다면, <a id=downloadhref href=#>클릭</a>)</span></div><button id=savebtn class="btn--raised btn--primary g--1 color-black" style=text-align:center;font-size:16pt;font-family:inherit;display:none;padding:20px onclick=resume()>현재창에서 다시 진행</button><div id=downloadapp style=display:none class="g--1 tile no-margin-vertical"><div style=font-size:14pt;margin-bottom:7px>클립버드를 사용해보세요.</div>카톡이나 sms 대화창에서 파일을 쉽고 빠르게 무료로 첨부 할 수 있습니다.<br>카톡이나 SMS에서 지원하지 않는 mp3,문서등을 자유롭게 첨부해보세요.<br>(텔래그램,비트윈,라인 등 많이 사용되는 메신져들에서도 다 사용할 수 있습니다.)<br><a href="https://play.google.com/store/apps/details?id=com.clipbirdapp.app&utm_source=downloadpage&utm_medium=webapp&utm_campaign=downloadapp" onclick="ga('send', 'event','app', 'download');" ;="" style=margin-bottom:7px><img height=16px src=google_play.png>클립버드 설치하기</a><br><br><a href="https://play.google.com/store/apps/details?id=com.clipbirdapp.app"><img width=300px src=screen.png></a></div><script type=text/javascript charset=utf-8>
-var addToHome=function(e){function t(){if(x){var t,a=Date.now();if(e.addToHomeConfig)for(t in e.addToHomeConfig)O[t]=e.addToHomeConfig[t];O.autostart||(O.hookOnLoad=!1),c=/ipad/gi.test(H.platform),m=e.devicePixelRatio&&e.devicePixelRatio>1,f=/Safari/i.test(H.appVersion)&&!/CriOS/i.test(H.appVersion),p=H.standalone,u=H.appVersion.match(/OS (\d+_\d+)/i),u=u&&u[1]?+u[1].replace("_","."):0,I=+e.localStorage.getItem("addToHome"),b=e.sessionStorage.getItem("addToHomeSession"),g=O.returningVisitor?I&&I+24192e5>a:!0,I||(I=a),h=g&&a>=I,O.hookOnLoad?e.addEventListener("load",o,!1):!O.hookOnLoad&&O.autostart&&o()}}function o(){if(e.removeEventListener("load",o,!1),g?O.expire&&h&&e.localStorage.setItem("addToHome",Date.now()+6e4*O.expire):e.localStorage.setItem("addToHome",Date.now()),T||f&&h&&!b&&!p&&g){var t="",s=H.platform.split(" ")[0],i=H.language.replace("-","_");y=document.createElement("div"),y.id="addToHomeScreen",y.style.cssText+="left:-9999px;-webkit-transition-property:-webkit-transform,opacity;-webkit-transition-duration:0;-webkit-transform:translate3d(0,0,0);position:"+(5>u?"absolute":"fixed"),O.message in L&&(i=O.message,O.message=""),""===O.message&&(O.message=i in L?L[i]:L.en_us),O.touchIcon&&(t=m?document.querySelector('head link[rel^=apple-touch-icon][sizes="114x114"],head link[rel^=apple-touch-icon][sizes="144x144"],head link[rel^=apple-touch-icon]'):document.querySelector('head link[rel^=apple-touch-icon][sizes="57x57"],head link[rel^=apple-touch-icon]'),t&&(t='<span style="background-image:url('+t.href+')" class="addToHomeTouchIcon"></span>')),y.className=(u>=7?"addToHomeIOS7 ":"")+(c?"addToHomeIpad":"addToHomeIphone")+(t?" addToHomeWide":""),y.innerHTML=t+O.message.replace("%device",s).replace("%icon",u>=4.2?'<span class="addToHomeShare"></span>':'<span class="addToHomePlus">+</span>')+(O.arrow?'<span class="addToHomeArrow"'+(u>=7&&c&&t?' style="margin-left:-32px"':"")+"></span>":"")+(O.closeButton?'<span class="addToHomeClose">×</span>':""),document.body.appendChild(y),O.closeButton&&y.addEventListener("click",n,!1),!c&&u>=6&&window.addEventListener("orientationchange",d,!1),setTimeout(a,O.startDelay)}}function a(){var t,o=208;if(c)switch(5>u?(S=e.scrollY,v=e.scrollX):6>u?o=160:u>=7&&(o=143),y.style.top=S+O.bottomOffset+"px",y.style.left=Math.max(v+o-Math.round(y.offsetWidth/2),9)+"px",O.animationIn){case"drop":t="0.6s",y.style.webkitTransform="translate3d(0,"+-(e.scrollY+O.bottomOffset+y.offsetHeight)+"px,0)";break;case"bubble":t="0.6s",y.style.opacity="0",y.style.webkitTransform="translate3d(0,"+(S+50)+"px,0)";break;default:t="1s",y.style.opacity="0"}else switch(S=e.innerHeight+e.scrollY,5>u?(v=Math.round((e.innerWidth-y.offsetWidth)/2)+e.scrollX,y.style.left=v+"px",y.style.top=S-y.offsetHeight-O.bottomOffset+"px"):(y.style.left=null,y.style.right="1%",y.style.marginLeft=-Math.round(y.offsetWidth/2)-(e.orientation%180&&u>=6&&7>u?40:0)+"px",y.style.bottom=O.bottomOffset+"px"),O.animationIn){case"drop":t="1s",y.style.webkitTransform="translate3d(0,"+-(S+O.bottomOffset)+"px,0)";break;case"bubble":t="0.6s",y.style.webkitTransform="translate3d(0,"+(y.offsetHeight+O.bottomOffset+50)+"px,0)";break;default:t="1s",y.style.opacity="0"}y.offsetHeight,y.style.webkitTransitionDuration=t,y.style.opacity="1",y.style.webkitTransform="translate3d(0,0,0)",y.addEventListener("webkitTransitionEnd",i,!1),w=setTimeout(close,O.lifespan)}function s(e){T=e,o()}function n(){e.sessionStorage.setItem("addToHomeSession","1"),b=!0,close()}function i(){return y.removeEventListener("webkitTransitionEnd",i,!1),y.style.webkitTransitionProperty="-webkit-transform",y.style.webkitTransitionDuration="0.2s",w?void(5>u&&w&&(k=setInterval(r,O.iterations))):(y.parentNode.removeChild(y),void(y=null))}function r(){var t=new WebKitCSSMatrix(e.getComputedStyle(y,null).webkitTransform),o=c?e.scrollY-S:e.scrollY+e.innerHeight-S,a=c?e.scrollX-v:e.scrollX+Math.round((e.innerWidth-y.offsetWidth)/2)-v;(o!=t.m42||a!=t.m41)&&(y.style.webkitTransform="translate3d("+a+"px,"+o+"px,0)")}function l(){e.localStorage.removeItem("addToHome"),e.sessionStorage.removeItem("addToHomeSession")}function d(){y.style.marginLeft=-Math.round(y.offsetWidth/2)-(e.orientation%180&&u>=6&&7>u?40:0)+"px"}var c,m,f,p,u,h,b,g,y,T,k,w,H=e.navigator,x="platform"in H&&/iphone|ipod|ipad/gi.test(H.platform),v=0,S=0,I=0,O={autostart:!1,returningVisitor:!1,animationIn:"bubble",animationOut:"fade",startDelay:0,lifespan:15e4,bottomOffset:14,expire:0,message:'다운로드를 시작하시려면 %icon 을 터치후 "Safari로 열기"를 선택하세요',touchIcon:!1,arrow:!0,hookOnLoad:!0,closeButton:!1,iterations:100},L={};return t(),{show:s,close:close,reset:l}}(window);
+var addToHome = (function (w) {
+	var nav = w.navigator,
+		isIDevice = 'platform' in nav && (/iphone|ipod|ipad/gi).test(nav.platform),
+		isIPad,
+		isRetina,
+		isSafari,
+		isStandalone,
+		OSVersion,
+		startX = 0,
+		startY = 0,
+		lastVisit = 0,
+		isExpired,
+		isSessionActive,
+		isReturningVisitor,
+		balloon,
+		overrideChecks,
+
+		positionInterval,
+		closeTimeout,
+
+		options = {
+			autostart: false,			// Automatically open the balloon
+			returningVisitor: false,	// Show the balloon to returning visitors only (setting this to true is highly recommended)
+			animationIn: 'bubble',		// drop || bubble || fade
+			animationOut: 'fade',		// drop || bubble || fade
+			startDelay: 0,			// 2 seconds from page load before the balloon appears
+			lifespan: 150000,			// 15 seconds before it is automatically destroyed
+			bottomOffset: 14,			// Distance of the balloon from bottom
+			expire: 0,					// Minutes to wait before showing the popup again (0 = always displayed)
+			message: '다운로드를 시작하시려면 %icon 을 터치후 "Safari로 열기"를 선택하세요',				// Customize your message or force a language ('' = automatic)
+			touchIcon: false,			// Display the touch icon
+			arrow: true,				// Display the balloon arrow
+			hookOnLoad: true,			// Should we hook to onload event? (really advanced usage)
+			closeButton: false,			// Let the user close the balloon
+			iterations: 100				// Internal/debug use
+		},
+
+		intl = {
+		
+		};
+
+	function init () {
+		// Preliminary check, all further checks are performed on iDevices only
+		if ( !isIDevice ) return;
+
+		var now = Date.now(),
+			i;
+
+		// Merge local with global options
+		if ( w.addToHomeConfig ) {
+			for ( i in w.addToHomeConfig ) {
+				options[i] = w.addToHomeConfig[i];
+			}
+		}
+		if ( !options.autostart ) options.hookOnLoad = false;
+
+		isIPad = (/ipad/gi).test(nav.platform);
+		isRetina = w.devicePixelRatio && w.devicePixelRatio > 1;
+		isSafari = (/Safari/i).test(nav.appVersion) && !(/CriOS/i).test(nav.appVersion);
+		isStandalone = nav.standalone;
+		OSVersion = nav.appVersion.match(/OS (\d+_\d+)/i);
+		OSVersion = OSVersion && OSVersion[1] ? +OSVersion[1].replace('_', '.') : 0;
+
+		lastVisit = +w.localStorage.getItem('addToHome');
+
+		isSessionActive = w.sessionStorage.getItem('addToHomeSession');
+		isReturningVisitor = options.returningVisitor ? lastVisit && lastVisit + 28*24*60*60*1000 > now : true;
+
+		if ( !lastVisit ) lastVisit = now;
+
+		// If it is expired we need to reissue a new balloon
+		isExpired = isReturningVisitor && lastVisit <= now;
+
+		if ( options.hookOnLoad ) w.addEventListener('load', loaded, false);
+		else if ( !options.hookOnLoad && options.autostart ) loaded();
+	}
+
+	function loaded () {
+		w.removeEventListener('load', loaded, false);
+
+		if ( !isReturningVisitor ) w.localStorage.setItem('addToHome', Date.now());
+		else if ( options.expire && isExpired ) w.localStorage.setItem('addToHome', Date.now() + options.expire * 60000);
+
+		if ( !overrideChecks && ( !isSafari || !isExpired || isSessionActive || isStandalone || !isReturningVisitor ) ) return;
+
+		var touchIcon = '',
+			platform = nav.platform.split(' ')[0],
+			language = nav.language.replace('-', '_');
+
+		balloon = document.createElement('div');
+		balloon.id = 'addToHomeScreen';
+		balloon.style.cssText += 'left:-9999px;-webkit-transition-property:-webkit-transform,opacity;-webkit-transition-duration:0;-webkit-transform:translate3d(0,0,0);position:' + (OSVersion < 5 ? 'absolute' : 'fixed');
+
+		// Localize message
+		if ( options.message in intl ) {		// You may force a language despite the user's locale
+			language = options.message;
+			options.message = '';
+		}
+		if ( options.message === '' ) {			// We look for a suitable language (defaulted to en_us)
+			options.message = language in intl ? intl[language] : intl['en_us'];
+		}
+
+		if ( options.touchIcon ) {
+			touchIcon = isRetina ?
+				document.querySelector('head link[rel^=apple-touch-icon][sizes="114x114"],head link[rel^=apple-touch-icon][sizes="144x144"],head link[rel^=apple-touch-icon]') :
+				document.querySelector('head link[rel^=apple-touch-icon][sizes="57x57"],head link[rel^=apple-touch-icon]');
+
+			if ( touchIcon ) {
+				touchIcon = '<span style="background-image:url(' + touchIcon.href + ')" class="addToHomeTouchIcon"></span>';
+			}
+		}
+
+		balloon.className = (OSVersion >=7 ? 'addToHomeIOS7 ' : '') + (isIPad ? 'addToHomeIpad' : 'addToHomeIphone') + (touchIcon ? ' addToHomeWide' : '');
+		balloon.innerHTML = touchIcon +
+			options.message.replace('%device', platform).replace('%icon', OSVersion >= 4.2 ? '<span class="addToHomeShare"></span>' : '<span class="addToHomePlus">+</span>') +
+			(options.arrow ? '<span class="addToHomeArrow"' + (OSVersion >= 7 && isIPad && touchIcon ? ' style="margin-left:-32px"' : '') + '></span>' : '') +
+			(options.closeButton ? '<span class="addToHomeClose">\u00D7</span>' : '');
+
+		document.body.appendChild(balloon);
+
+		// Add the close action
+		if ( options.closeButton ) balloon.addEventListener('click', clicked, false);
+
+		if ( !isIPad && OSVersion >= 6 ) window.addEventListener('orientationchange', orientationCheck, false);
+
+		setTimeout(show, options.startDelay);
+	}
+
+	function show () {
+		var duration,
+			iPadXShift = 208;
+
+		// Set the initial position
+		if ( isIPad ) {
+			if ( OSVersion < 5 ) {
+				startY = w.scrollY;
+				startX = w.scrollX;
+			} else if ( OSVersion < 6 ) {
+				iPadXShift = 160;
+			} else if ( OSVersion >= 7 ) {
+				iPadXShift = 143;
+			}
+
+			balloon.style.top = startY + options.bottomOffset + 'px';
+			balloon.style.left = Math.max(startX + iPadXShift - Math.round(balloon.offsetWidth / 2), 9) + 'px';
+
+			switch ( options.animationIn ) {
+				case 'drop':
+					duration = '0.6s';
+					balloon.style.webkitTransform = 'translate3d(0,' + -(w.scrollY + options.bottomOffset + balloon.offsetHeight) + 'px,0)';
+					break;
+				case 'bubble':
+					duration = '0.6s';
+					balloon.style.opacity = '0';
+					balloon.style.webkitTransform = 'translate3d(0,' + (startY + 50) + 'px,0)';
+					break;
+				default:
+					duration = '1s';
+					balloon.style.opacity = '0';
+			}
+		} else {
+			startY = w.innerHeight + w.scrollY;
+
+			if ( OSVersion < 5 ) {
+				startX = Math.round((w.innerWidth - balloon.offsetWidth) / 2) + w.scrollX;
+				balloon.style.left = startX + 'px';
+				balloon.style.top = startY - balloon.offsetHeight - options.bottomOffset + 'px';
+			} else {
+				balloon.style.left = null;
+				balloon.style.right = '1%';
+				balloon.style.marginLeft = -Math.round(balloon.offsetWidth / 2) - ( w.orientation%180 && OSVersion >= 6 && OSVersion < 7 ? 40 : 0 ) + 'px';
+				balloon.style.bottom = options.bottomOffset + 'px';
+			}
+
+			switch (options.animationIn) {
+				case 'drop':
+					duration = '1s';
+					balloon.style.webkitTransform = 'translate3d(0,' + -(startY + options.bottomOffset) + 'px,0)';
+					break;
+				case 'bubble':
+					duration = '0.6s';
+					balloon.style.webkitTransform = 'translate3d(0,' + (balloon.offsetHeight + options.bottomOffset + 50) + 'px,0)';
+					break;
+				default:
+					duration = '1s';
+					balloon.style.opacity = '0';
+			}
+		}
+
+		balloon.offsetHeight;	// repaint trick
+		balloon.style.webkitTransitionDuration = duration;
+		balloon.style.opacity = '1';
+		balloon.style.webkitTransform = 'translate3d(0,0,0)';
+		balloon.addEventListener('webkitTransitionEnd', transitionEnd, false);
+
+		closeTimeout = setTimeout(close, options.lifespan);
+	}
+
+	function manualShow (override) {
+		//if ( !isIDevice || balloon ) return;
+
+		overrideChecks = override;
+		loaded();
+	}
+
+	
+	function clicked () {
+		w.sessionStorage.setItem('addToHomeSession', '1');
+		isSessionActive = true;
+		close();
+	}
+
+	function transitionEnd () {
+		balloon.removeEventListener('webkitTransitionEnd', transitionEnd, false);
+
+		balloon.style.webkitTransitionProperty = '-webkit-transform';
+		balloon.style.webkitTransitionDuration = '0.2s';
+
+		// We reached the end!
+		if ( !closeTimeout ) {
+			balloon.parentNode.removeChild(balloon);
+			balloon = null;
+			return;
+		}
+
+		// On iOS 4 we start checking the element position
+		if ( OSVersion < 5 && closeTimeout ) positionInterval = setInterval(setPosition, options.iterations);
+	}
+
+	function setPosition () {
+		var matrix = new WebKitCSSMatrix(w.getComputedStyle(balloon, null).webkitTransform),
+			posY = isIPad ? w.scrollY - startY : w.scrollY + w.innerHeight - startY,
+			posX = isIPad ? w.scrollX - startX : w.scrollX + Math.round((w.innerWidth - balloon.offsetWidth) / 2) - startX;
+
+		// Screen didn't move
+		if ( posY == matrix.m42 && posX == matrix.m41 ) return;
+
+		balloon.style.webkitTransform = 'translate3d(' + posX + 'px,' + posY + 'px,0)';
+	}
+
+	// Clear local and session storages (this is useful primarily in development)
+	function reset () {
+		w.localStorage.removeItem('addToHome');
+		w.sessionStorage.removeItem('addToHomeSession');
+	}
+
+	function orientationCheck () {
+		balloon.style.marginLeft = -Math.round(balloon.offsetWidth / 2) - ( w.orientation%180 && OSVersion >= 6 && OSVersion < 7 ? 40 : 0 ) + 'px';
+	}
+
+	// Bootstrap!
+	init();
+
+	return {
+		show: manualShow,
+		close: close,
+		reset: reset
+	};
+})(window);
+
 </script><script charset=utf-8>
 /*! @license Firebase v2.2.9
     License: https://www.firebase.com/terms/terms-of-service.html */
@@ -272,9 +531,762 @@ U.prototype.pe=function(a,b){x("Firebase.changeEmail",2,2,arguments.length);fg("
 U.prototype.We=function(a,b){x("Firebase.resetPassword",2,2,arguments.length);fg("Firebase.resetPassword",1,a,!1);gg("Firebase.resetPassword",a,"email");A("Firebase.resetPassword",2,b,!1);this.k.N.We(a,b)};U.prototype.resetPassword=U.prototype.We;})();
 
 </script><script charset=utf-8>
-function cmpVersions(e,t){var o,n,a;for(e=e.split("."),t=t.split("."),n=Math.min(e.length,t.length),o=0;n>o;o++)if(a=parseInt(e[o],10)-parseInt(t[o],10),0!==a)return a;return e.length-t.length}function formatBytes(e,t){if(0==e)return"0 Byte";var o=1e3,n=t+1||3,a=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],i=Math.floor(Math.log(e)/Math.log(o));return(e/Math.pow(o,i)).toPrecision(n)+" "+a[i]}var max=0,part=new Array,filename,partState={},partEnd=0,durl="",progress=new Array,type="application/octet-stream",nowd=0,state=0,complete=!1,kjk=0,QueryString=function(){for(var e={},t=window.location.search.substring(1),o=t.split("&"),n=0;n<o.length;n++){var a=o[n].split("=");if("undefined"==typeof e[a[0]])e[a[0]]=decodeURIComponent(a[1]);else if("string"==typeof e[a[0]]){var i=[e[a[0]],decodeURIComponent(a[1])];e[a[0]]=i}else e[a[0]].push(decodeURIComponent(a[1]))}return e}(),$=function(e){return document.getElementById(e)},html=function(e,t){$(e).innerHTML=t},show=function(e){$(e).style.display="block"},hide=function(e){$(e).style.display="none"},log=function(e){html("log",$("log").innerHTML+"<br/>"+e)},checkComplete=function(){if(!complete&&partEnd==max){Firebase.goOffline(),html("noticetext","다운로드가 완료되었습니다."+(isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.":"")),$("notice").classList.remove("bg--clouds"),$("notice").classList.add("bg--yellow");var e=new Blob(part,{type:type});saveAs(e,filename),hide("col"),hide("coll"),isIOS||show("downloadapp"),show("downloadlink");try{ga("send","event","download","complete","multipart")}catch(t){}}},id=QueryString.id,sv=QueryString.sv,baseurl="https://storage.googleapis.com/clipbird/"+sv+"/",ua=navigator.userAgent,isChrome=ua.toLowerCase().indexOf("chrome")>-1,isAndroid=ua.toLowerCase().indexOf("android")>-1,isIOS=/iPad|iPhone|iPod/.test(ua)&&!window.MSStream,inapp=ua.indexOf("KAKAOTALK")>=0,isSamsungBrowser=ua.indexOf("SamsungBrowser")>=0,isLG=ua.indexOf("; LG-")>=0,isFileSaverSupported,osVersion;isAndroid&&(osVersion=/Android ([\.\_\d]+)/.exec(ua)[1]);try{var MyBlob=new Blob(["test text"],{type:"text/plain"});isFileSaverSupported=MyBlob instanceof Blob&&!isIOS&&!(isAndroid&&isLG&&cmpVersions(osVersion,"5.0.0")<=0)}catch(e){isFileSaverSupported=!1}inapp&&isIOS&&addToHome.show(!0);var newwindow=isAndroid&&inapp;(newwindow||isSamsungBrowser)&&(isFileSaverSupported=!1),isFileSaverSupported||hide("col");var resume=function(){html("noticetext","다운로드 대기중"),state=0,""!=durl&&downloadurl(durl)},startdownload=function(){state=-1;try{Firebase.goOffline()}catch(e){}hide("downloadbtn"),html("noticetext","다른창에서 다운로드를 진행합니다."),show("notice"),show("savebtn"),location.href="intent:"+location.href+"#Intent;package=com.android.chrome;end;"},downloadurl=function(e){if(durl=e,!(0>state)){complete=!0,Firebase.goOffline(),html("upload","완료"),hide("col"),hide("coll"),html("noticetext","다운로드가 진행중입니다."+(isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.":"")),$("notice").classList.remove("bg--clouds"),$("notice").classList.add("bg--yellow");try{ga("send","event","download","complete","direct")}catch(t){}isIOS||show("downloadapp"),show("downloadlink"),location.href=e}},checkMsg=function(e){if(state=e,0==state);else if(-10==state){html("noticetext","파일정보가 없습니다. (발신자가 파일을 삭제했을 수 있습니다.파일을 다시 요청해보세요)");try{ga("send","event","download","fail","nofile")}catch(t){}show("notice"),hide("downloadbtn"),hide("savebtn"),Firebase.goOffline()}else if(-5==state){html("upload","발신자가 업로드를 중지하였습니다."),hide("downloadbtn"),hide("savebtn"),html("noticetext","업로드가 취소되었습니다.");try{ga("send","event","download","fail","cancle")}catch(t){}show("notice"),Firebase.goOffline()}},count=function(e){for(var t=0,o=0;o<e.length;o++)"undefined"!=typeof e[o]&&("string"==typeof e[o]&&0==e[o].length||t++);return t},download=function(e){if(kjk++,html("ds",Array(kjk%4).join(".")),!("undefined"!=typeof partState[e]||nowd>8||complete||0>state)){partState[e]=0,nowd++,console.log(nowd);var t=new XMLHttpRequest;t.open("GET",baseurl+id+(e+1),!0),t.responseType="blob",t.onreadystatechange=function(o){4===t.readyState&&200===t.status&&(part[e]=new Blob([t.response],{type:"application/octet-stream"}),partEnd=count(part),html("download",partEnd+"/"+max),hide("downloadbtn"),html("noticetext","다운로드 진행중..."),0!=max&&checkComplete())},t.onerror=function(e){nowd--},t.onload=function(e){nowd--},t.send()}},checkpart=function(){for(var e=progress.length,t=0,o=0;e>o;o++)"#"==progress[o]&&"undefined"==typeof partState[o]&&(setTimeout("download("+o+")",200*t),t++);kjk++,html("ds",Array(kjk%4).join(".")),(0==max||max>partEnd)&&setTimeout(checkpart,200*t+500)};if("undefined"==typeof id)html("filename","--정보를 불러올수 없습니다.--"),html("upload","--정보를 불러올수 없습니다.--");else{var ref=new Firebase("https://clipbird.firebaseio.com/"+sv+"/"+id);ref.child("name").on("value",function(e){e.exists()&&(html("filename",e.val()),filename=e.val(),ref.child("name").off("value",arguments.callee))}),ref.child("state").on("value",function(e){if(e.exists()){var t=e.val();t==parseInt(t,10)&&checkMsg(t)}else checkMsg(-10)}),ref.child("parts").on("value",function(e){e.exists()&&(max=e.val(),html("download","?/"+max),html("upload","0/"+max),ref.child("parts").off("value",arguments.callee))});var chekpartstart=!1,downloadbtnv=!1;ref.child("progress").on("child_added",function(e,t){if(e.exists()){inapp&&!downloadbtnv&&max>20&&!complete&&isAndroid&&state>=0&&(downloadbtnv=!0,show("downloadbtn"));var o=e.key(),n=e.val();progress[o-1]=n;var a=count(progress);!chekpartstart&&!newwindow&&isFileSaverSupported&&state>=0&&(chekpartstart=!0,checkpart()),html("upload",a+"/"+max)}}),ref.child("url").on("value",function(e){e.exists()&&($("downloadhref").href=e.val(),isFileSaverSupported&&0!=count(progress)||downloadurl(e.val()))}),ref.child("type").on("value",function(e){e.exists()&&(type=e.val(),ref.child("type").off("value",arguments.callee))}),ref.child("size").on("value",function(e){e.exists()&&(html("size","("+formatBytes(e.val(),1)+")"),ref.child("type").off("value",arguments.callee))})}
+
+  var max=0;
+  var part=new Array();
+    var filename;
+   var partState={};
+   var partEnd=0;
+   var durl="";
+   var progress=new Array();
+   var type="application/octet-stream";
+   var nowd=0;
+
+//    public static final int START = 0;
+  //  public static final int COMPLETE = 10;
+    //public static final int STOP = 5;
+    //public static final int DELETE = -5;
+
+   var state=0; 
+   var complete=false;
+   var kjk=0;
+
+	var QueryString = function () {
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+           if (typeof query_string[pair[0]] === "undefined") {
+      query_string[pair[0]] = decodeURIComponent(pair[1]);
+         } else if (typeof query_string[pair[0]] === "string") {
+      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+      query_string[pair[0]] = arr;
+     } else {
+      query_string[pair[0]].push(decodeURIComponent(pair[1]));
+    }
+  } 
+    return query_string;
+}();
+
+
+var $=function(i){
+	 return 	document.getElementById(i);
+	}
+var html=function(i,d){
+$(i).innerHTML = d;
+};
+
+var show=function(i){
+$(i).style.display = "block";
+};
+
+
+var hide=function(i){
+$(i).style.display = "none";
+};
+
+
+
+var log=function(s){
+html("log", $("log").innerHTML    +"<br/>" +s)	
+	
+}
+var checkComplete=function(){
+			
+		if(!complete&& partEnd==max){ 
+			Firebase.goOffline();
+			
+			// show("savebtn");
+			  html("noticetext","다운로드가 완료되었습니다."+ (isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.":""));
+			$("notice").classList.remove("bg--clouds");
+	
+			  $("notice").classList.add("bg--yellow");
+
+			var g= new Blob(part, {'type':type});
+			
+			saveAs(g, filename);
+			hide("col");
+			hide("coll");
+			if(!isIOS)show("downloadapp");
+
+			show("downloadlink");
+ 
+			try{
+	ga('send', 'event',"download", "complete", "multipart");
+	} catch(err) {}
+			
+		 	/* document.getElementById("savebtn").onclick=function(){
+				saveAs(g, filename);
+			} */
+			//href=URL.createObjectURL(g);
+			
+			//document.getElementById("savebtn").download=filename;
+		}
+		
+};
+
+function cmpVersions (a, b) {
+    var i, l, d;
+
+    a = a.split('.');
+    b = b.split('.');
+    l = Math.min(a.length, b.length);
+
+    for (i=0; i<l; i++) {
+        d = parseInt(a[i], 10) - parseInt(b[i], 10);
+        if (d !== 0) {
+            return d;
+        }
+    }
+
+    return a.length - b.length;
+}
+
+var id=QueryString["id"];
+var sv=QueryString["sv"];
+
+
+
+var baseurl="https://storage.googleapis.com/clipbird/"+sv+"/";
+ 
+ 
+
+
+
+var ua=navigator.userAgent;
+
+var isChrome=ua.toLowerCase().indexOf("chrome") > -1;
+var isAndroid = ua.toLowerCase().indexOf("android") > -1;
+var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+var inapp =ua.indexOf("KAKAOTALK")>=0;
+var isSamsungBrowser =ua.indexOf("SamsungBrowser")>=0;
+
+var isLG =ua.indexOf("; LG-")>=0;
+var isFileSaverSupported;
+var osVersion;
+if(isAndroid )osVersion = /Android ([\.\_\d]+)/.exec(ua)[1];
+
+try {
+	
+	var MyBlob = new Blob(['test text'], {type : 'text/plain'});
+	isFileSaverSupported=MyBlob instanceof Blob&&!isIOS&&!(isAndroid&& isLG&&cmpVersions(osVersion,"5.0.0")<=0 );//&&!!window.Worker;
+} catch (e) {
+	isFileSaverSupported=false;
+	
+} 
+  
+if(inapp&&isIOS) addToHome.show(true); 
+ 
+var newwindow= isAndroid&& inapp; 
+ 
+if(newwindow||isSamsungBrowser)isFileSaverSupported=false;
+ 
+
+
+if(!isFileSaverSupported){
+	
+	hide("col");
+} 
+/*
+if(newwindow){
+  if(!isIOS)	show("downloadbtn");
+	 hide("savebtn");
+	 hide("notice");
+
+	
+	
+	
+}else {
+	
+	if(!isFileSaverSupported){
+		
+		html("notice","업로드가 진행중입니다.");
+	}
+			show("notice");
+			hide("downloadbtn");
+			
+			
+		
+				 hide("savebtn");
+	
+}
+
+*/
+	
+var resume=function(){
+	
+
+
+html("noticetext","다운로드 대기중");
+
+state=0;
+if( durl!=""){ 
+
+downloadurl(durl);
+
+} else {
+
+	
+}
+
+}
+var startdownload=function(){
+	
+
+
+		state=-1;
+try{	Firebase.goOffline();}
+catch (e){}
+			
+		  
+
+			hide("downloadbtn");
+			html("noticetext","다른창에서 다운로드를 진행합니다.");
+			show("notice");
+			
+				show("savebtn");
+
+
+			
+	location.href="intent:"+location.href +"#Intent;package=com.android.chrome;end;";
+  
+
+			
+	
+
+
+	
+
+
+}
+function formatBytes(bytes,decimals) {
+   if(bytes == 0) return '0 Byte';
+   var k = 1000;
+   var dm = decimals + 1 || 3;
+   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+   var i = Math.floor(Math.log(bytes) / Math.log(k));
+   return (bytes / Math.pow(k, i)).toPrecision(dm) + ' ' + sizes[i];
+}
+
+var downloadurl=function(s){
+
+	durl=s;
+	if(state<0) return;
+	complete=true;
+	Firebase.goOffline();
+	
+	html("upload","완료");
+		hide("col");
+			hide("coll");
+
+	html("noticetext","다운로드가 진행중입니다."+ (isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.":""));
+	$("notice").classList.remove("bg--clouds");
+	
+	$("notice").classList.add("bg--yellow");
+	try{
+	ga('send', 'event',"download", "complete", "direct");
+	} catch(err) {};
+	
+	if(!isIOS)show("downloadapp");
+	show("downloadlink");
+	location.href=s; 
+	
+};   
+
+var checkMsg=function(a){
+	state=a;
+	if(state==0){
+
+	
+	}
+	else 
+	if(state==-10){
+		
+		html("noticetext","파일정보가 없습니다. (발신자가 파일을 삭제했을 수 있습니다.파일을 다시 요청해보세요)");
+		try{
+	ga('send', 'event',"download", "fail", "nofile");
+	} catch(err) {}
+		show("notice");
+		hide("downloadbtn");
+		hide("savebtn");
+			Firebase.goOffline();
+
+	} else if(state==-5){
+		
+	html("upload","발신자가 업로드를 중지하였습니다.");
+		hide("downloadbtn");
+		hide("savebtn");
+		
+		html("noticetext","업로드가 취소되었습니다.");
+		try{
+	ga('send', 'event',"download", "fail", "cancle");
+	} catch(err) {}
+	show("notice");
+			Firebase.goOffline();
+			
+	}
+}
+
+var count = function (a) {
+	var c = 0;
+	for(var i = 0; i < a.length; i++) {
+		if(typeof(a[i]) !== "undefined") {
+			if(typeof(a[i]) == "string" && a[i].length == 0) {
+			} else { 
+				c++;
+			}
+		}
+	}
+	return c;
+}
+ 
+var download=function(s){
+		kjk++;
+		html("ds",Array(kjk%4).join(".") );
+
+	if( typeof partState[s]!= "undefined"||nowd>8 ||complete||state<0) return;
+		partState[s]=0;
+		nowd++;
+		console.log(nowd);
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', baseurl+id+(s+1), true);
+		xhr.responseType = 'blob';
+		
+		xhr.onreadystatechange = function (oEvent) {
+			
+
+		    if (xhr.readyState === 4) {  
+		    	
+		        if (xhr.status === 200) {  
+		        
+					part[s] = new Blob([xhr.response], {type: "application/octet-stream"});
+					//log(s);
+					partEnd=count(part);
+					html("download",partEnd + "/" +max);
+					hide("downloadbtn");
+		  			html("noticetext","다운로드 진행중...");
+					if(max!=0)checkComplete();
+		        } else {  
+		          // console.log("Error", oXHR.statusText);  
+		        }  
+		    }  
+		}; 
+		
+		xhr.onerror  = function(e) {
+			nowd--;
+
+		}
+		xhr.onload=function(e){
+			nowd--;
+		}
+		xhr.send();
+};
+
+
+
+
+
+var checkpart=function(){
+
+		var len=progress.length;
+			
+			var j=0;
+			for(var i=0;i<len;i++){
+				if( progress[i]=="#" && typeof partState[i]== "undefined"){
+					
+						
+						setTimeout("download("+i+")", j*200);
+				j++;	
+				}
+				
+			}
+
+			kjk++;
+		html("ds",Array(kjk%4).join(".") );
+
+	if(max==0|| partEnd<	max){	
+		
+		
+	setTimeout(checkpart,  j*200+500);
+  }
+
+}
+
+
+if(typeof id== "undefined") {
+
+	html("filename","--정보를 불러올수 없습니다.--");
+		html("upload","--정보를 불러올수 없습니다.--");
+} else 
+	
+//	if(newwindow){		startdownload();}else
+
+
+	{
+
+	
+	
+		var ref = new Firebase("https://clipbird.firebaseio.com/"+sv+"/"+id);
+	   
+	ref.child('name').on("value", function(data) {
+	
+	if(data.exists())	{
+		html("filename",data.val());
+		filename=data.val();
+		ref.child('name').off("value",arguments.callee);
+	}	
+		
+		});
+
+	ref.child('state').on("value", function(data) {
+	
+	if(data.exists())	{
+		var ddd=data.val();
+	
+	if (ddd == parseInt(ddd, 10))checkMsg(ddd);
+			
+	}	else{
+	
+			checkMsg(-10);	
+	
+	}
+	  
+		});
+
+
+	ref.child('parts').on("value", function(data) {
+	
+	if(data.exists())	{
+		max=data.val();
+
+		
+		html("download","?/"+max);
+		html("upload","0/"+max);
+		ref.child('parts').off("value",arguments.callee);
+	}	
+	
+		});
+var chekpartstart=false;
+var downloadbtnv=false;	
+ref.child('progress').on("child_added", function(data,pdata) {
+		
+
+		if(data.exists())	{
+				
+		if(inapp&&!downloadbtnv&& max>20&&!complete&&isAndroid&&state>=0){
+			downloadbtnv=true;
+			show("downloadbtn");
+		}
+
+			    var key=data.key();
+				var val1=data.val();
+				
+			 
+	
+					progress[key-1]=val1;
+					var c=count(progress);
+					if( !chekpartstart&&!newwindow&&isFileSaverSupported&&state>=0){
+						
+						chekpartstart=true;
+						checkpart();
+					}
+				
+					
+					
+					html("upload",c  + "/" +max);
+	 
+			
+
+				
+			
+		
+			}	
+		
+			});
+	
+
+ref.child('url').on("value", function(data) {
+	
+	if(data.exists())	{
+		
+		// &&!newwindow
+		$("downloadhref").href=data.val();
+		if((!isFileSaverSupported||count(progress)==0))downloadurl(data.val());
+	}	
+	
+		});
+
+
+	ref.child('type').on("value", function(data) {
+		
+		if(data.exists())	{
+			type=data.val();
+			ref.child('type').off("value",arguments.callee);
+		}	
+		
+			});
+		
+
+	ref.child('size').on("value", function(data) {
+		
+		if(data.exists())	{
+			
+			html('size',	"("+formatBytes(data.val(),1)+")");
+			ref.child('type').off("value",arguments.callee);
+		}	
+		
+			});
+		
+	
+  
+
+
+	}
+
 </script><script charset=utf-8>
-var saveAs=saveAs||function(e){"use strict";if("undefined"==typeof navigator||!/MSIE [1-9]\./.test(navigator.userAgent)){var t=e.document,n=function(){return e.URL||e.webkitURL||e},o=t.createElementNS("http://www.w3.org/1999/xhtml","a"),r="download"in o,i=function(e){var t=new MouseEvent("click");e.dispatchEvent(t)},a=e.webkitRequestFileSystem,c=e.requestFileSystem||a||e.mozRequestFileSystem,f=function(t){(e.setImmediate||e.setTimeout)(function(){throw t},0)},u="application/octet-stream",s=0,d=500,l=function(t){var o=function(){"string"==typeof t?n().revokeObjectURL(t):t.remove()};e.chrome?o():setTimeout(o,d)},v=function(e,t,n){t=[].concat(t);for(var o=t.length;o--;){var r=e["on"+t[o]];if("function"==typeof r)try{r.call(e,n||e)}catch(i){f(i)}}},p=function(e){return/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(e.type)?new Blob(["\ufeff",e],{type:e.type}):e},w=function(t,f,d){d||(t=p(t));var w,y,m,S=this,h=t.type,O=!1,R=function(){v(S,"writestart progress write writeend".split(" "))},b=function(){if((O||!w)&&(w=n().createObjectURL(t)),y)y.location.href=w;else{var o=e.open(w,"_blank");void 0==o&&"undefined"!=typeof safari&&(e.location.href=w)}S.readyState=S.DONE,R(),l(w)},g=function(e){return function(){return S.readyState!==S.DONE?e.apply(this,arguments):void 0}},E={create:!0,exclusive:!1};return S.readyState=S.INIT,f||(f="download"),r?(w=n().createObjectURL(t),o.href=w,o.download=f,void setTimeout(function(){i(o),R(),l(w),S.readyState=S.DONE})):(e.chrome&&h&&h!==u&&(m=t.slice||t.webkitSlice,t=m.call(t,0,t.size,u),O=!0),a&&"download"!==f&&(f+=".download"),(h===u||a)&&(y=e),c?(s+=t.size,void c(e.TEMPORARY,s,g(function(e){e.root.getDirectory("saved",E,g(function(e){var n=function(){e.getFile(f,E,g(function(e){e.createWriter(g(function(n){n.onwriteend=function(t){y.location.href=e.toURL(),S.readyState=S.DONE,v(S,"writeend",t),l(e)},n.onerror=function(){var e=n.error;e.code!==e.ABORT_ERR&&b()},"writestart progress write abort".split(" ").forEach(function(e){n["on"+e]=S["on"+e]}),n.write(t),S.abort=function(){n.abort(),S.readyState=S.DONE},S.readyState=S.WRITING}),b)}),b)};e.getFile(f,{create:!1},g(function(e){e.remove(),n()}),g(function(e){e.code===e.NOT_FOUND_ERR?n():b()}))}),b)}),b)):void b())},y=w.prototype,m=function(e,t,n){return new w(e,t,n)};return"undefined"!=typeof navigator&&navigator.msSaveOrOpenBlob?function(e,t,n){return n||(e=p(e)),navigator.msSaveOrOpenBlob(e,t||"download")}:(y.abort=function(){var e=this;e.readyState=e.DONE,v(e,"abort")},y.readyState=y.INIT=0,y.WRITING=1,y.DONE=2,y.error=y.onwritestart=y.onprogress=y.onwrite=y.onabort=y.onerror=y.onwriteend=null,m)}}("undefined"!=typeof self&&self||"undefined"!=typeof window&&window||this.content);"undefined"!=typeof module&&module.exports?module.exports.saveAs=saveAs:"undefined"!=typeof define&&null!==define&&null!=define.amd&&define([],function(){return saveAs});
+var saveAs = saveAs || (function(view) {
+	"use strict";
+	// IE <10 is explicitly unsupported
+	if (typeof navigator !== "undefined" && /MSIE [1-9]\./.test(navigator.userAgent)) {
+		return;
+	}
+	var
+		  doc = view.document
+		  // only get URL when necessary in case Blob.js hasn't overridden it yet
+		, get_URL = function() {
+			return view.URL || view.webkitURL || view;
+		}
+		, save_link = doc.createElementNS("http://www.w3.org/1999/xhtml", "a")
+		, can_use_save_link = "download" in save_link
+		, click = function(node) {
+			var event = new MouseEvent("click");
+			node.dispatchEvent(event);
+		}
+		, webkit_req_fs = view.webkitRequestFileSystem
+		, req_fs = view.requestFileSystem || webkit_req_fs || view.mozRequestFileSystem
+		, throw_outside = function(ex) {
+			(view.setImmediate || view.setTimeout)(function() {
+				throw ex;
+			}, 0);
+		}
+		, force_saveable_type = "application/octet-stream"
+		, fs_min_size = 0
+		// See https://code.google.com/p/chromium/issues/detail?id=375297#c7 and
+		// https://github.com/eligrey/FileSaver.js/commit/485930a#commitcomment-8768047
+		// for the reasoning behind the timeout and revocation flow
+		, arbitrary_revoke_timeout = 500 // in ms
+		, revoke = function(file) {
+			var revoker = function() {
+				if (typeof file === "string") { // file is an object URL
+					get_URL().revokeObjectURL(file);
+				} else { // file is a File
+					file.remove();
+				}
+			};
+			if (view.chrome) {
+				revoker();
+			} else {
+				setTimeout(revoker, arbitrary_revoke_timeout);
+			}
+		}
+		, dispatch = function(filesaver, event_types, event) {
+			event_types = [].concat(event_types);
+			var i = event_types.length;
+			while (i--) {
+				var listener = filesaver["on" + event_types[i]];
+				if (typeof listener === "function") {
+					try {
+						listener.call(filesaver, event || filesaver);
+					} catch (ex) {
+						throw_outside(ex);
+					}
+				}
+			}
+		}
+		, auto_bom = function(blob) {
+			// prepend BOM for UTF-8 XML and text/* types (including HTML)
+			if (/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)) {
+				return new Blob(["\ufeff", blob], {type: blob.type});
+			}
+			return blob;
+		}
+		, FileSaver = function(blob, name, no_auto_bom) {
+			if (!no_auto_bom) {
+				blob = auto_bom(blob);
+			}
+			// First try a.download, then web filesystem, then object URLs
+			var
+				  filesaver = this
+				, type = blob.type
+				, blob_changed = false
+				, object_url
+				, target_view
+				, dispatch_all = function() {
+					dispatch(filesaver, "writestart progress write writeend".split(" "));
+				}
+				// on any filesys errors revert to saving with object URLs
+				, fs_error = function() {
+					// don't create more object URLs than needed
+					if (blob_changed || !object_url) {
+						object_url = get_URL().createObjectURL(blob);
+					}
+					if (target_view) {
+						target_view.location.href = object_url;
+					} else {
+						var new_tab = view.open(object_url, "_blank");
+						if (new_tab == undefined && typeof safari !== "undefined") {
+							//Apple do not allow window.open, see http://bit.ly/1kZffRI
+							view.location.href = object_url
+						}
+					}
+					filesaver.readyState = filesaver.DONE;
+					dispatch_all();
+					revoke(object_url);
+				}
+				, abortable = function(func) {
+					return function() {
+						if (filesaver.readyState !== filesaver.DONE) {
+							return func.apply(this, arguments);
+						}
+					};
+				}
+				, create_if_not_found = {create: true, exclusive: false}
+				, slice
+			;
+			filesaver.readyState = filesaver.INIT;
+			if (!name) {
+				name = "download";
+			}
+			if (can_use_save_link) {
+				object_url = get_URL().createObjectURL(blob);
+				save_link.href = object_url;
+				save_link.download = name;
+				setTimeout(function() {
+					click(save_link);
+					dispatch_all();
+					revoke(object_url);
+					filesaver.readyState = filesaver.DONE;
+				});
+				return;
+			}
+			// Object and web filesystem URLs have a problem saving in Google Chrome when
+			// viewed in a tab, so I force save with application/octet-stream
+			// http://code.google.com/p/chromium/issues/detail?id=91158
+			// Update: Google errantly closed 91158, I submitted it again:
+			// https://code.google.com/p/chromium/issues/detail?id=389642
+			if (view.chrome && type && type !== force_saveable_type) {
+				slice = blob.slice || blob.webkitSlice;
+				blob = slice.call(blob, 0, blob.size, force_saveable_type);
+				blob_changed = true;
+			}
+			// Since I can't be sure that the guessed media type will trigger a download
+			// in WebKit, I append .download to the filename.
+			// https://bugs.webkit.org/show_bug.cgi?id=65440
+			if (webkit_req_fs && name !== "download") {
+				name += ".download";
+			}
+			if (type === force_saveable_type || webkit_req_fs) {
+				target_view = view;
+			}
+			if (!req_fs) {
+				fs_error();
+				return;
+			}
+			fs_min_size += blob.size;
+			req_fs(view.TEMPORARY, fs_min_size, abortable(function(fs) {
+				fs.root.getDirectory("saved", create_if_not_found, abortable(function(dir) {
+					var save = function() {
+						dir.getFile(name, create_if_not_found, abortable(function(file) {
+							file.createWriter(abortable(function(writer) {
+								writer.onwriteend = function(event) {
+									target_view.location.href = file.toURL();
+									filesaver.readyState = filesaver.DONE;
+									dispatch(filesaver, "writeend", event);
+									revoke(file);
+								};
+								writer.onerror = function() {
+									var error = writer.error;
+									if (error.code !== error.ABORT_ERR) {
+										fs_error();
+									}
+								};
+								"writestart progress write abort".split(" ").forEach(function(event) {
+									writer["on" + event] = filesaver["on" + event];
+								});
+								writer.write(blob);
+								filesaver.abort = function() {
+									writer.abort();
+									filesaver.readyState = filesaver.DONE;
+								};
+								filesaver.readyState = filesaver.WRITING;
+							}), fs_error);
+						}), fs_error);
+					};
+					dir.getFile(name, {create: false}, abortable(function(file) {
+						// delete file if it already exists
+						file.remove();
+						save();
+					}), abortable(function(ex) {
+						if (ex.code === ex.NOT_FOUND_ERR) {
+							save();
+						} else {
+							fs_error();
+						}
+					}));
+				}), fs_error);
+			}), fs_error);
+		}
+		, FS_proto = FileSaver.prototype
+		, saveAs = function(blob, name, no_auto_bom) {
+			return new FileSaver(blob, name, no_auto_bom);
+		}
+	;
+	// IE 10+ (native saveAs)
+	if (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob) {
+		return function(blob, name, no_auto_bom) {
+			if (!no_auto_bom) {
+				blob = auto_bom(blob);
+			}
+			return navigator.msSaveOrOpenBlob(blob, name || "download");
+		};
+	}
+
+	FS_proto.abort = function() {
+		var filesaver = this;
+		filesaver.readyState = filesaver.DONE;
+		dispatch(filesaver, "abort");
+	};
+	FS_proto.readyState = FS_proto.INIT = 0;
+	FS_proto.WRITING = 1;
+	FS_proto.DONE = 2;
+
+	FS_proto.error =
+	FS_proto.onwritestart =
+	FS_proto.onprogress =
+	FS_proto.onwrite =
+	FS_proto.onabort =
+	FS_proto.onerror =
+	FS_proto.onwriteend =
+		null;
+
+	return saveAs;
+}(
+	   typeof self !== "undefined" && self
+	|| typeof window !== "undefined" && window
+	|| this.content
+));
+// `self` is undefined in Firefox for Android content script context
+// while `this` is nsIContentFrameMessageManager
+// with an attribute `content` that corresponds to the window
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports.saveAs = saveAs;
+} else if ((typeof define !== "undefined" && define !== null) && (define.amd != null)) {
+  define([], function() {
+    return saveAs;
+  });
+}
 </script><div id=log></div><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
