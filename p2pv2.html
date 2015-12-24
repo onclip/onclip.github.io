@@ -626,7 +626,8 @@ var beReady=function(){
     appCaller = new PlayRTC({
       projectKey: 'bda5c7ed-4ffd-4432-8eab-4ce9814be248',
       audio: false,
-      video: false
+      video: false,
+		data:true
     });
 	appCaller.on('connectChannel', function (channelId) {
      
@@ -812,7 +813,7 @@ downloadurl(durl);
 }
 var startdownload=function(){
 	
-
+ 
 
 			
 	try{	Firebase.goOffline();}
