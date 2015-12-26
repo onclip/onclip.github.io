@@ -664,6 +664,8 @@ var beReady=function(){
        // var progressWidth = document.querySelector('.progress').clientWidth;
        // var progress = (progressWidth / message.fragCount) * (message.fragIndex + 1);
        // receiveProgressBar.style.width = progress + 'px';
+	   	html("download",(message.fragIndex + 1) + "/" +message.fragCount);
+				
       });
       dataChannel.on('error', function (event) {
         alert('ERROR. See the log.');
