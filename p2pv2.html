@@ -400,16 +400,13 @@ var beReady=function(){
         }
       });
       dataChannel.on('progress', function (message) {
-       // var progressWidth = document.querySelector('.progress').clientWidth;
+      
+	  //  var progressWidth = $('progress').clientWidth;
        // var progress = (progressWidth / message.fragCount) * (message.fragIndex + 1);
-       // receiveProgressBar.style.width = progress + 'px';
 
-	    var progressWidth = $('progress').clientWidth;
-        var progress = (progressWidth / message.fragCount) * (message.fragIndex + 1);
+       //$('receiveProgressBar').style.width = progress + 'px';
 
-       $('receiveProgressBar').style.width = progress + 'px';
-
-	   	html("download", parseInt( ((message.fragIndex + 1)/message.fragCount)*100)+"%");
+	  // 	html("download", parseInt( ((message.fragIndex + 1)/message.fragCount)*100)+"%");
 				
       });
       dataChannel.on('error', function (event) {
