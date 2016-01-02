@@ -688,31 +688,7 @@ if(!isFileSaverSupported){
 	
 	hide("col");
 } 
-/*
-if(newwindow){
-  if(!isIOS)	show("downloadbtn");
-	 hide("savebtn");
-	 hide("notice");
 
-	
-	
-	
-}else {
-	
-	if(!isFileSaverSupported){
-		
-		html("notice","업로드가 진행중입니다.");
-	}
-			show("notice");
-			hide("downloadbtn");
-			
-			
-		
-				 hide("savebtn");
-	
-}
-
-*/
 	
 var resume=function(){
 	
@@ -918,9 +894,20 @@ if(typeof id== "undefined") {
 
 	html("filename","--정보를 불러올수 없습니다.--");
 		html("upload","--정보를 불러올수 없습니다.--");
-} else 
+
+}  else 
 	
-//	if(newwindow){		startdownload();}else
+if(inapp&&isAndroid){		
+	
+		
+			downloadbtnv=true;
+			show("downloadbtn");
+		}
+		
+	
+
+	
+	else
 
 
 	{
@@ -934,7 +921,12 @@ if(typeof id== "undefined") {
 	if(data.exists())	{
 		html("filename",data.val());
 		filename=data.val();
+		
+	
+
+
 		ref.child('name').off("value",arguments.callee);
+
 	}	
 		
 		});
@@ -974,11 +966,7 @@ ref.child('progress').on("child_added", function(data,pdata) {
 
 		if(data.exists())	{
 				
-		if(inapp&&!downloadbtnv&&!complete&&isAndroid&&state>=0){   //&& max>20
-			downloadbtnv=true;
-			show("downloadbtn");
-		}
-
+	
 			    var key=data.key();
 				var val1=data.val();
 				
