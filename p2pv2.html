@@ -532,7 +532,7 @@ if (typeof module !== "undefined" && module.exports) {
       .substring(1);
   }
   
-	var uuid=s4() + s4()  + s4();
+	var uuid=null;
     var file = null;
     var appCaller;
 
@@ -836,8 +836,10 @@ var startdownload=function(){
 	} else{
 		
      appCaller.createChannel();
+	 uuid= new Date().getTime(); +"_"+s4;
+	 ref.child("log").child(uuid).set(0);
 	}
-  
+   
 	
 	   
 
@@ -1090,7 +1092,7 @@ ref.child('key').on("value", function(data) {
 		
 			});
 		
-	ref.child("log").child(uuid).set(0);
+	
 	ref.child('size').on("value", function (data) {
 		
 		if(data.exists())	{
