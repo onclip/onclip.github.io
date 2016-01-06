@@ -522,7 +522,7 @@ if (typeof module !== "undefined" && module.exports) {
    var token="";
    var error=null;
    var ref=null;
-  
+  var filesize;
    var durl="";
       var key="";
 
@@ -610,16 +610,30 @@ function notice(text){
 		show("notice");
 }
 function updateProgressBar( p, max, i){
+ var progressWidth = $("progress").clientWidth;
+ var progress ;
+	if(i==0){
+	
+         progress = (progressWidth /max) * p;
 
-	 var progressWidth = $("progress").clientWidth;
-        var progress = (progressWidth /max) * Math.min( max ,p+i);
-
-       $('receiveProgressBar').style.width = progress + 'px';
+      
 	   html("download",p + "/" +max);
+	}
+	 else {
 
+		var percent=(downloadedsize+i)/filesize;
+		 progress = progressWidth*percent;
+		console.log(percent);
+      
+	   html("download",parseInt( percent*100) + "%" );
+
+	 }
+	  $('receiveProgressBar').style.width = progress + 'px';
 	//   	html("download", parseInt( ((p)/max)*100)+"%");
 
 }
+
+var downloadedsize=0;
 var beReady=function(){
 
 
@@ -666,10 +680,11 @@ var beReady=function(){
 		}
 					part[partEnd] = new Blob([file.blob], {type: "application/octet-stream"});
 					//log(s);
+				
 				partEnd=count(part);
+					downloadedsize+=file.totalSize;
+				//updateProgressBar(partEnd,max,0);
 					
-		
-					updateProgressBar(partEnd,max,1);
 					//html("noticetext","다운로드 진행중...");
 					if(max!=0)checkComplete();
 
@@ -679,9 +694,9 @@ var beReady=function(){
       });
      
 	     dataChannel.on('progress', function (message) {
-        
-
-		updateProgressBar(partEnd+1,max, (message.fragIndex + 1.00)/message.fragCount);
+      
+			
+			updateProgressBar(partEnd,max, message.totalSize / message.fragCount* (message.fragIndex + 1) );
 
       });
 
@@ -1096,7 +1111,7 @@ ref.child('key').on("value", function(data) {
 	ref.child('size').on("value", function (data) {
 		
 		if(data.exists())	{
-			
+			filesize=data.val();
 			html('size',	"("+formatBytes(data.val(),1)+")");
 			ref.child('type').off("value",arguments.callee);
 		}	
