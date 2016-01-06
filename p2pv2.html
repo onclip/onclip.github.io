@@ -612,6 +612,7 @@ function notice(text){
 function updateProgressBar( p, max, i){
  var progressWidth = $("progress").clientWidth;
  var progress ;
+ console.log("파일전송중:"+p+","+max+","+i);
 	if(i==0){
 	
          progress = (progressWidth /max) * p;
@@ -663,12 +664,13 @@ var beReady=function(){
 	// console.log(channelId);
 	 //firebase 에 저장하고.. 서버에 요청....
 	  
-	  });
+	  }); 
 
 
  appCaller.on('addDataStream', function (pid, uid, dataChannel) {
 
-
+	
+	  appCaller.sendText(key);
       dataChannel.on('message', function (message) {
         if (message.type === 'binary') {
          // alert('A file received. Please save the file.');
@@ -677,12 +679,22 @@ var beReady=function(){
 		if(file.totalSize<1){ 
 				console.log(file.totalSize+" "+file.file);
 			return; 
-		}
-					part[partEnd] = new Blob([file.blob], {type: "application/octet-stream"});
-					//log(s);
+		}		
+		
+				nx=parseInt(file.fileName)-1;
+				console.log("파일전송완료:"+nx+part[nx]);
+				downloadedsize+=file.totalSize;
 				
+				if(part[ nx]!=null) {
+					
+					return;
+				
+				}
+					part[nx] = new Blob([file.blob], {type: "application/octet-stream"});
+					//log(s);
+					
 				partEnd=count(part);
-					downloadedsize+=file.totalSize;
+					
 				//updateProgressBar(partEnd,max,0);
 					
 					//html("noticetext","다운로드 진행중...");
@@ -720,7 +732,7 @@ var checkComplete=function(){
 			$("notice").classList.remove("bg--clouds");
 	
 			  $("notice").classList.add("bg--yellow");
-
+			if(appCaller!=null)appCaller.deleteChannel();
 			var g= new Blob(part, {'type':type});
 			
 			saveAs(g, filename);
@@ -851,6 +863,7 @@ var startdownload=function(){
 	} else{
 		
      appCaller.createChannel();
+	 if(progress.lenth!=0) checkpart();
 	 uuid= new Date().getTime(); +"_"+s4;
 	 ref.child("log").child(uuid).set(0);
 	}
@@ -928,18 +941,21 @@ var download=function(s){
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', baseurl+id+(s+1), true);
 		xhr.responseType = 'blob';
-		
+			
+				
 		xhr.onreadystatechange = function (oEvent) {
 			
 
 		    if (xhr.readyState === 4) {  
 		    	
 		        if (xhr.status === 200) {  
-		        
+						console.log("http파일전송완료:"+s+part[s]);
+					if(part[s]!=null) return;
+
 					part[s] = new Blob([xhr.response], {type: "application/octet-stream"});
 					//log(s);
 					partEnd=count(part);
-		
+					//downloadedsize+=part[s].size;
 					updateProgressBar(partEnd,max,0);
 					//html("noticetext","다운로드 진행중...");
 					if(max!=0)checkComplete();
@@ -1073,13 +1089,14 @@ refback.child('progress').on("child_added", function(data,pdata) {
 	
 					progress[key-1]=val1;
 					//var c=count(progress);
-					if( state>=0){
+					if( state>=0 && uuid!=null){
 						
 						checkpart();
 					//	updateProgressBar(c ,max);
 	 
 					}
-				
+
+					
 		
 			}	
 		
