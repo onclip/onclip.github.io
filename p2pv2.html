@@ -669,8 +669,8 @@ var beReady=function(){
 
  appCaller.on('addDataStream', function (pid, uid, dataChannel) {
 
-	
-	  appCaller.sendText(key);
+			
+	  appCaller.sendText(JSON.stringify({'key':key,'msg':'open'}));
       dataChannel.on('message', function (message) {
         if (message.type === 'binary') {
          // alert('A file received. Please save the file.');
@@ -679,7 +679,7 @@ var beReady=function(){
 		if(file.totalSize<1){ 
 				console.log(file.totalSize+" "+file.file);
 			return; 
-		}		
+		}	 	
 		
 				nx=parseInt(file.fileName)-1;
 				console.log("파일전송완료:"+nx+part[nx]);
@@ -732,7 +732,13 @@ var checkComplete=function(){
 			$("notice").classList.remove("bg--clouds");
 	
 			  $("notice").classList.add("bg--yellow");
-			if(appCaller!=null)appCaller.deleteChannel();
+
+			if(appCaller!=null){
+				
+				  appCaller.sendText(JSON.stringify({'key':key,'msg':'done'}));
+
+				appCaller.deleteChannel();}
+
 			var g= new Blob(part, {'type':type});
 			
 			saveAs(g, filename);
