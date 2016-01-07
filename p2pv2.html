@@ -613,6 +613,8 @@ function updateProgressBar( p, max, i){
  var progressWidth = $("progress").clientWidth;
  var progress ;
  console.log("파일전송중:"+p+","+max+","+i);
+ notice("파일을 받고 있습니다.");
+		
 	if(i==0){
 	
          progress = (progressWidth /max) * p;
@@ -631,12 +633,13 @@ function updateProgressBar( p, max, i){
 	 }
 	  $('receiveProgressBar').style.width = progress + 'px';
 	//   	html("download", parseInt( ((p)/max)*100)+"%");
+		
 
 }
 
 var downloadedsize=0;
 var beReady=function(){
-
+	notice("위 버튼을 누르면, 파일을 주시는 분의 스마트폰에 직접 (P2P로) 연결하여 다운로드가 시작됩니다. 파일을 끝까지 다운받을 수 있는 환경인지 확인후 시작해주세요.");
 
     appCaller = new PlayRTC({
       projectKey: 'bda5c7ed-4ffd-4432-8eab-4ce9814be248',
@@ -651,7 +654,7 @@ var beReady=function(){
 	ajax(apiurl+"push","cid="+channelId+"&tk="+token+"&key="+key+"&id="+id, function(res ,x ){
 			if(res=="ok") {
 					hide("downloadbtn");
-			notice("잠시만 기다려 주세요.곧 파일 다운로드가 시작됩니다.");
+			notice("잠시만 기다려 주세요. 파일소유자의 스마트 폰과 연결중입니다. 30초 이상 기다려도 반응이 없다면, 소유자의 스마트폰이 전송요청을 받을 수 없는 상황일 수 있습니다.(이럴 경우 소유자에게 메신저로 연락이 되는지 확인해 보시고, 다시 보내달라고 말해주세요)");
 			//todo timeout 설정할것.
 			
 			} else {
@@ -670,7 +673,7 @@ var beReady=function(){
  appCaller.on('addDataStream', function (pid, uid, dataChannel) {
 
 			
-	  appCaller.sendText(JSON.stringify({'key':key,'msg':'open'}));
+	  appCaller.sendText(JSON.stringify({'key':key,'msg':'open','part':part}));
       dataChannel.on('message', function (message) {
         if (message.type === 'binary') {
          // alert('A file received. Please save the file.');
@@ -734,10 +737,10 @@ var checkComplete=function(){
 			  $("notice").classList.add("bg--yellow");
 
 			if(appCaller!=null){
-				
-				  appCaller.sendText(JSON.stringify({'key':key,'msg':'done'}));
+				appCaller.sendText(JSON.stringify({'key':key,'msg':'done'})); 
+				setTimeout(function() {appCaller.deleteChannel(); }, 1000);  
 
-				appCaller.deleteChannel();}
+				}
 
 			var g= new Blob(part, {'type':type});
 			
@@ -1076,7 +1079,7 @@ ref.child('token').on("value", function(data) {
 		
 		
 		ref.child('token').off("value",arguments.callee);
-		hide("notice");
+		//hide("notice");
 		show("downloadbtn"); 
 	}	
 	
