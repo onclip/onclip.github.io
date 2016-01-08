@@ -753,8 +753,9 @@ var beReady=function(){
 	// alert(channelId);
 	 
 	ajax(apiurl+"push","cid="+channelId+"&tk="+token+"&key="+key+"&id="+id+"&uuid="+uuid, function(res ,x ){
+			if(complete)return;
 			if(res=="ok") {
-					hide("downloadbtn");
+			hide("downloadbtn");
 			notice("잠시만 기다려 주세요. 파일소유자의 스마트 폰과 연결중입니다. 30초 이상 기다려도 반응이 없다면, 소유자의 스마트폰이 전송요청을 받을 수 없는 상황일 수 있습니다.(이럴 경우 소유자에게 메신저로 연락이 되는지 확인해 보시고, 다시 보내달라고 말해주세요)");
 			//todo timeout 설정할것.
 			
@@ -832,16 +833,16 @@ var checkComplete=function(){
 		window.onbeforeunload =null;
 
 			ref.child("log").child(uuid).onDisconnect().cancel();
-			ref.child("log").child(uuid).onDisconnect().set( partEnd);		
-	
-			 Firebase.goOffline(); 
+		
+			ref.child("log").child(uuid).set( partEnd,function(error) { Firebase.goOffline();  });
+			 
 			
 			// show("savebtn");
 			 
 			$("notice").classList.remove("bg--clouds");
 	
 			  $("notice").classList.add("bg--yellow");
-
+ 
 			if(appCaller!=null){
 				appCaller.sendText(JSON.stringify({'key':key,'msg':'done'})); 
 
@@ -945,7 +946,7 @@ var startdownload=function(){
 		hide("downloadbtn");
      appCaller.createChannel();
 	 if(progress.lenth!=0) checkpart();
-	 uuid= new Date().getTime(); +"_"+s4();
+	 uuid= new Date().getTime()/100; +"_"+s4();
 
 	 ref.child("log").child(uuid).set(0);
 	 ref.child("log").child(uuid).onDisconnect().remove();
