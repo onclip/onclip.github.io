@@ -520,12 +520,12 @@ var time=0;
     var filename;
    var partState={};
    var partEnd=0;
-   var token="";
+   var token=null;
    var error=null;
    var ref=null;
   var filesize;
    var durl="";
-      var key="";
+      var key=null;
 
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -684,7 +684,7 @@ var emailme=function(){
 
 
 var checkEnv=function(){
-	if(token==null||key==null)return;
+	if(token==null||key==null||complete)return;
 	if(getSpan(time)==""){
 	notice("시간이 만료되어 다운로드를 받을 수 없습니다. 상대방에게 다시 요청해보세요.");
 
@@ -827,13 +827,17 @@ var beReady=function(){
 var checkComplete=function(){
 		if(!complete&& partEnd==max){ 
 			
-			ref.child("log").child(uuid).onDisconnect().cancel();
-			ref.child("log").child(uuid).set( partEnd,function(error) {  Firebase.goOffline(); });		
-	
 			
+	  window.onunload=null;
+		window.onbeforeunload =null;
+
+			ref.child("log").child(uuid).onDisconnect().cancel();
+			ref.child("log").child(uuid).onDisconnect().set( partEnd);		
+	
+			 Firebase.goOffline(); 
 			
 			// show("savebtn");
-			  html("noticetext","다운로드가 완료되었습니다."+ (isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.":""));
+			 
 			$("notice").classList.remove("bg--clouds");
 	
 			  $("notice").classList.add("bg--yellow");
@@ -853,7 +857,7 @@ var checkComplete=function(){
 			if(!isIOS)show("downloadapp");
 
 			complete=true;
- 
+			 notice("다운로드가 완료되었습니다."+ (isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.":""));
 					try{
 			ga('send', 'event',"download", "complete", "p2p");
 			} catch(err) {}
@@ -875,22 +879,6 @@ var checkComplete=function(){
 		
 };
 
-function cmpVersions (a, b) {
-    var i, l, d;
-
-    a = a.split('.');
-    b = b.split('.');
-    l = Math.min(a.length, b.length);
-
-    for (i=0; i<l; i++) {
-        d = parseInt(a[i], 10) - parseInt(b[i], 10);
-        if (d !== 0) {
-            return d;
-        }
-    }
-
-    return a.length - b.length;
-}
 
 var id=QueryString["id"];
 var sv=QueryString["sv"];
@@ -941,24 +929,16 @@ var isFileSaverSupported;
 var osVersion;
 if(isAndroid )osVersion = /Android ([\.\_\d]+)/.exec(ua)[1];
 
-try {
-	
-	var MyBlob = new Blob(['test text'], {type : 'text/plain'});
-	isFileSaverSupported=MyBlob instanceof Blob&&!isIOS&&!(isAndroid&& isLG&&cmpVersions(osVersion,"5.0.0")<=0 );//&&!!window.Worker;
-} catch (e) {
-	isFileSaverSupported=false;
-	
-} 
-  
 
 
+ 
 var startdownload=function(){
 	
 		
 
 
 				
-	if(token=="" || key=="") {
+	if(token==null || key==null) {
 			alert("파일정보가 부족합니다.새로고침을 시도해주세요.");
 			return;
 	} else{
@@ -969,6 +949,22 @@ var startdownload=function(){
 
 	 ref.child("log").child(uuid).set(0);
 	 ref.child("log").child(uuid).onDisconnect().remove();
+
+
+	
+	  window.onunload=function(){
+			 appCaller.deleteChannel();	
+			 Firebase.goOffline(); 
+				
+
+		  }
+		window.onbeforeunload =
+		function(){ 
+		   // do something...
+		 
+		  return "파일전송이 완료되지 않았습니다.";
+		}
+
 	}
    
 	
@@ -1212,11 +1208,11 @@ ref.child('token').on("value", function(data) {
 	if(data.exists())	{
 		token=data.val();
 
-		
+		checkEnv();
 		
 		ref.child('token').off("value",arguments.callee);
 		//hide("notice");
-	checkEnv();
+	
 
 	}	
 	
