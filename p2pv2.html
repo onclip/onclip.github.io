@@ -946,7 +946,7 @@ var startdownload=function(){
 		hide("downloadbtn");
      appCaller.createChannel();
 	 if(progress.lenth!=0) checkpart();
-	 uuid= new Date().getTime()/100; +"_"+s4();
+	 uuid= parseInt( new Date().getTime()/100) +"_"+s4();
 
 	 ref.child("log").child(uuid).set(0);
 	 ref.child("log").child(uuid).onDisconnect().remove();
