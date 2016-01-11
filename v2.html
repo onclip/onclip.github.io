@@ -541,7 +541,7 @@ U.prototype.We=function(a,b){x("Firebase.resetPassword",2,2,arguments.length);fg
    var progress=new Array();
    var type="application/octet-stream";
    var nowd=0;
-	var time=-1;
+	var time=1;
 //    public static final int START = 0;
   //  public static final int COMPLETE = 10;
     //public static final int STOP = 5;
@@ -1043,7 +1043,7 @@ ref.child('progress').on("child_added", function(data,pdata) {
 		
 		
 		var s=getSpan(data.val());
-		html("expire", " ("+ (s==""?"만료됨":s+ "후 만료됩니다.")+ ")") ;
+		//html("expire", " ("+ (s==""?"만료됨":s+ "후 만료됩니다.")+ ")") ;
 		time= data.val()-new Date().getTime();
 		if(time<=0&& false) {
 			
