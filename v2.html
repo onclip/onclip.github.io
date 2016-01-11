@@ -1041,7 +1041,7 @@ ref.child('progress').on("child_added", function(data,pdata) {
 		
 		var s=getSpan(data.val());
 		html("expire", " ("+ (s==""?"만료됨":s+ "후 만료됩니다.")+ ")") ;
-		time= data.val()-new Date().getTime());
+		time= data.val()-new Date().getTime();
 		if(time<=0) {
 			
 			notice("시간이 만료되어 다운로드를 받을 수 없습니다. 상대방에게 다시 요청해보세요.");
