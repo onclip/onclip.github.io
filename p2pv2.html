@@ -1125,7 +1125,7 @@ var checkpart=function(){
         } else{
             var hour = (spantima ) / (60 * 60);
             var minute = (spantima%3600) / 60;
-            str= parseInt( hour) +"시간 "+parseInt(minute)+"분";
+          str= (hour>0?( parseInt( hour)+"시간 ") : "") +parseInt(minute)+"분";
 
         }
 
