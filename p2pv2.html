@@ -520,8 +520,7 @@ var time=0;
     var filename;
    var partState={};
    var partEnd=0;
-   var token=null;
-   var error=null;
+    var error=null;
    var ref=null;
   var filesize;
    var durl="";
@@ -641,7 +640,7 @@ function updateProgressBar( p, max, i){
 var downloadedsize=0;
 
 var openchrome=function(){
-	
+	 
 
 		
 			notice("다른 브라운져(크롬)에서 다운로드를 진행합니다.");
@@ -684,7 +683,7 @@ var emailme=function(){
 
 
 var checkEnv=function(){
-	if(token==null||key==null||complete)return;
+	if(key==null||complete)return;
 	if(getSpan(time)==""){
 	notice("시간이 만료되어 다운로드를 받을 수 없습니다. 상대방에게 다시 요청해보세요.");
 
@@ -752,7 +751,7 @@ var beReady=function(){
      
 	// alert(channelId);
 	 
-	ajax(apiurl+"push","cid="+channelId+"&tk="+token+"&key="+key+"&id="+id+"&uuid="+uuid, function(res ,x ){
+	ajax(apiurl+"push",JSON.stringify({cid:channelId,key:key,id:id,uuid:uuid}), function(res ,x ){
 			if(complete)return;
 			if(res=="ok") {
 			hide("downloadbtn");
@@ -887,8 +886,9 @@ var sv=QueryString["sv"];
 
 var run=QueryString["run"];
 
-var baseurl="https://storage.googleapis.com/clipbird/"+sv+"/";
-var apiurl="https://"+sv+"-dot-clipbird-1124.appspot.com/";
+
+
+var apiurl="https://p79tbok4yh.execute-api.ap-northeast-1.amazonaws.com/"+sv+"/notify"
  
 
 
@@ -940,7 +940,7 @@ var startdownload=function(){
 
 
 				
-	if(token==null || key==null) {
+	if( key==null) {
 			alert("파일정보가 부족합니다.새로고침을 시도해주세요.");
 			return;
 	} else{
@@ -1050,7 +1050,7 @@ var download=function(s){
 		nowd++;
 		console.log(nowd);
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', baseurl+id+(s+1), true);
+		xhr.open('GET', progress[s+1], true);
 		xhr.responseType = 'blob';
 			
 				
@@ -1096,7 +1096,7 @@ var checkpart=function(){
 			
 			var j=0;
 			for(var i=0;i<len;i++){
-				if( progress[i]=="#" && typeof partState[i]== "undefined"){
+				if( progress[i] && typeof partState[i]== "undefined"){
 					
 						
 						setTimeout("download("+i+")", j*200);
@@ -1205,20 +1205,7 @@ if(typeof id== "undefined") {
 
 
 
-ref.child('token').on("value", function(data) {
-	
-	if(data.exists())	{
-		token=data.val();
 
-		checkEnv();
-		
-		ref.child('token').off("value",arguments.callee);
-		//hide("notice");
-	
-
-	}	
-	
-		});
 
 refback.child('progress').on("child_added", function(data,pdata) {
 		
