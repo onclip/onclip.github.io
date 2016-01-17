@@ -751,7 +751,7 @@ var beReady=function(){
      
 	// alert(channelId);
 	 
-	ajax(apiurl+"push",JSON.stringify({cid:channelId,key:key,id:id,uuid:uuid}), function(res ,x ){
+	ajax(apiurl,JSON.stringify({cid:channelId,key:key,id:id,uuid:uuid}), function(res ,x ){
 			if(complete)return;
 			if(res=="ok") {
 			hide("downloadbtn");
