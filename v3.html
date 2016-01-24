@@ -1039,6 +1039,13 @@ if(typeof id== "undefined") {
 
 	{
 
+
+			if(inapp&&isIOS) {
+				addToHome.show(true); 
+			notice(null);
+			}
+
+
 			if(inapp&&!complete&&isAndroid&&state>=0){
 		
 			show("downloadbtn");
@@ -1112,7 +1119,7 @@ var timeout1=null;
 	
 
 	
-		ref.child('progress').on("child_added", function(data,pdata) {
+	if(!(inapp&&isIOS) )	ref.child('progress').on("child_added", function(data,pdata) {
 												
 
 						if(data.exists())	{
@@ -1152,13 +1159,14 @@ var timeout1=null;
 										if(!isFileSaverSupported&&state>=0){
 											show("uploadrow");
 											notice("업로드가 완료되면 다운로드가 시작됩니다.");
-											html("upload", max+"개 중"+  c  + "개 업로드 완료");
-
+										
 										}
 									
 									
 									
 									}
+										html("upload", "분할파일"+ max+"개 중"+  c  + "개 업로드 완료");
+
 					 
 							
 
@@ -1187,15 +1195,16 @@ var timeout1=null;
 			hide("inappdownload");
 				hide("coll"); 
 				hide("col");
-
+			if(inapp&&isIOS) {
+				hide("addToHomeScreen"); 
+				
+					}
+	
 			Firebase.goOffline();
 		} else {
 
-			if(inapp&&isIOS) {
-				addToHome.show(true); 
-			notice(null);
-			}
 				
+
 		}
 		ref.child('time').off("value",arguments.callee);
 	}	 
