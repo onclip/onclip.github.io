@@ -405,6 +405,19 @@ var link=QueryString["link"];
 var time=(sv=="v1")? 1:-1;
 
 
+function checksimple(){
+
+
+		ref.child('progress/1').on("value", function(data) {
+			if(data.exists())	{
+			
+				downloadurl(data.val());
+			}
+		
+		
+		});
+}
+
 
 function check(){
 	
@@ -467,7 +480,10 @@ if(typeof id== "undefined") {
 	
 	}
 	  
-		});
+		},function (errorObject) {
+			checkMsg(-10);	
+
+});
 
 
 
@@ -497,8 +513,20 @@ if(typeof id== "undefined") {
 							downloadurl(data.val());
 							ref.child('url').off("value",arguments.callee);
 						} else{
-							
-							check();
+								ref.child('parts').on("value", function(data) {
+	
+									if(data.exists())	{
+										max=data.val();
+											if(max==1) checksimple() else 
+									
+											check();
+
+										
+										ref.child('parts').off("value",arguments.callee);
+									}	
+									
+										});    
+						
 
 						}
 						
