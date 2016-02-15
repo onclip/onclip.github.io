@@ -1414,6 +1414,8 @@ var timeout1=null;
 		if(time<=0&& sv!="v1") {
 				if(timeout1) clearTimeout(timeout1);
 			notice("시간이 만료되어 다운로드를 받을 수 없습니다. 상대방에게 다시 요청해서 새로운 링크를 받으셔야 합니다.(파일이 만료되어 삭제되었으니 다시 업로드를 해달라고 해주시면 됩니다.)");
+			show("downloadapp");
+			$("screen").setAttribute("src","/screen.png");
 			hide("downloadbtn");
 			hide("inappdownload");
 				hide("coll"); 
