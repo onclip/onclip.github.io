@@ -438,6 +438,15 @@ var wait;
 				flatMap(function(pnum){ 
 					 ggbController.myPlayerRef.child("card").remove();
 					
+						ggbController.opponentPlayerRef.child("online").on('value',function (data){
+		
+		if(data.val()==null){
+			  Firebase.goOffline();
+		notice("상대방이 방을 나갔습니다. 생업으로 돌아갑시다.");	
+		hide("room");
+		}
+		
+	})
 					startGame();
 					
 					
@@ -617,15 +626,7 @@ var wait;
     this.opponentPlayerRef = this.ggbRef.child('player' + (1 - playerNum));
     this.myBoard = this.boards[playerNum];
     this.myBoard.isMyBoard = true;
-	this.opponentPlayerRef.on('child_removed',function (data){
-		
-		if(data.key()=="online"){
-			  Firebase.goOffline();
-		notice("상대방이 방을 나갔습니다. 생업으로 돌아갑시다.");	
-		hide("room");
-		}
-		
-	})
+
     // Clear our 'online' status when we disconnect so somebody else can join.
     this.myPlayerRef.child('online').onDisconnect().remove();
 	
@@ -674,6 +675,8 @@ else
 
 var youradom;
  function startGame(){
+
+
 		
 		html("melabel","당신의 선택은?");
 		hide('restartButton');
