@@ -617,9 +617,9 @@ var wait;
     this.opponentPlayerRef = this.ggbRef.child('player' + (1 - playerNum));
     this.myBoard = this.boards[playerNum];
     this.myBoard.isMyBoard = true;
-	this.opponentPlayerRef.child('online').on('value',function (data){
+	this.opponentPlayerRef.on('child_removed',function (data){
 		
-		if(data.val()==null){
+		if(data.key()=="online"){
 			  Firebase.goOffline();
 		notice("상대방이 방을 나갔습니다. 생업으로 돌아갑시다.");	
 		hide("room");
