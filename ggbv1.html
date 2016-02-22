@@ -407,29 +407,12 @@ var wait;
 
      ggbController = new Ggb.Controller(ggbRef);
 
-				 Rx.Observable.zip(
-			  isonline0,  isonline1,
-			  function ( var1, var2) {
-				notice("이미 두 명이 가위바위보를 진행중입니다.(창을 여러개 열었다면 하나만 남기고 새로고침하세요.)");
-				return 1;
-				}
-			).subscribe(
-			  function (x) {
-				console.log('Next: %s', x);
-				
-			  },
-			  function (err) {
-				
-					
-				  console.log( err);
-				},
-			  function () {
-				console.log('2332');
-			  });
+			
 
-
-				Rx.Observable.zip(
-				  areyouready,  iamready,
+	var fff=	Rx.Observable.zip(
+				  areyouready,  iamready.timeout(2000).doOnError(
+					function (err) { location.reload(); }
+					).take(1)   ,
 				  function ( var1, pnum) {
 					
 					return pnum;
@@ -440,14 +423,14 @@ var wait;
 					
 						ggbController.opponentPlayerRef.child("online").on('value',function (data){
 		
-		if(data.val()==null){
-			if(wait)wait.dispose();
-	Firebase.goOffline();
-		notice("상대방이 방을 나갔습니다. 생업으로 돌아갑시다.");	
-		hide("room");
-		}
+				if(data.val()==null){
+					if(wait)wait.dispose();
+			Firebase.goOffline();
+				notice("상대방이 방을 나갔습니다.");	
+				hide("room");
+				}
 		
-	})
+			});
 					startGame();
 					
 					
@@ -468,6 +451,27 @@ var wait;
 				   
 				  });
 
+		 Rx.Observable.zip(
+			  isonline0,  isonline1,
+			  function ( var1, var2) {
+				if(!fff.isStopped)	fff.dispose();
+				Firebase.goOffline();
+				notice("이미 두 명이 가위바위보를 진행중입니다.(창을 여러개 열었다면 하나만 남기고 새로고침하세요.)");
+				return 1;
+				}
+			).subscribe(
+			  function (x) {
+				console.log('Next: %s', x);
+				
+			  },
+			  function (err) {
+				
+					
+				  console.log( err);
+				},
+			  function () {
+				console.log('2332');
+			  });
 
   }
 
