@@ -441,7 +441,8 @@ var wait;
 						ggbController.opponentPlayerRef.child("online").on('value',function (data){
 		
 		if(data.val()==null){
-			  Firebase.goOffline();
+			if(wait)wait.dispose();
+	Firebase.goOffline();
 		notice("상대방이 방을 나갔습니다. 생업으로 돌아갑시다.");	
 		hide("room");
 		}
