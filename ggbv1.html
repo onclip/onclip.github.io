@@ -410,7 +410,7 @@ var wait;
 			
 
 	var fff=	Rx.Observable.zip(
-				  areyouready,  iamready.timeout(4000).doOnError(
+				  areyouready,  iamready.timeout(6000).doOnError(
 					function (err) { location.reload(); }
 					).take(1)   ,
 				  function ( var1, pnum) {
