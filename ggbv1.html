@@ -105,7 +105,7 @@ transition: width 0.6s ease 0s;
     width: 100px;
 	margin:3px;
 }
-</style></head><body><header id=header1 class="tile g--2 no-margin-vertical bg--deep-purple color--white">가위바위보-클립버드</header><img style=display:none src=g1.png> <img style=display:none src=g2.png> <img style=display:none src=g3.png><div id=notice class="g--1 card no-margin-vertical bg--clouds" style=margin-bottom:10px><span id=noticetext>연결중입니다..(상대편의 입장을 기다립니다.)</span></div><div style=width:100%;text-align:center><div id=you class=imageSub style="width: 128px; margin: 0 auto;display:none"><img id=canvasyou><div class=blackbg></div><div class=label>상대방</div></div><br><br><div id=me class=imageSub style="width: 50%;margin: 0 auto;width: 128px;display:none"><img id=canvasme><div class=blackbg></div><div id=melabel class=label>당신의 선택은?</div></div><div id=buttons style="display:table; margin: 0 auto"><button id=g1></button><button id=g2></button><button id=g3></button></div><input type=button id=restartButton value="재도전 요청" style="width: 128px; font-size: 20px; margin: 0 auto;display:none"></div><div id=downloadapp style=display:none class="g--1 tile no-margin-vertical"><div style=font-size:14pt;margin-bottom:7px>클립버드를 사용해보세요.</div>가위바위보 게임은 물론, 카톡이나 sms 대화창에서 파일을 쉽고 빠르게 무료로 첨부 할 수 있습니다.<br>카톡이나 SMS에서 지원하지 않는 mp3,문서등을 자유롭게 첨부해보세요.<br>(라인,비트윈 같은 메신져에서도 다 사용할 수 있습니다.)<br><a href="https://play.google.com/store/apps/details?id=com.clipbirdapp.app&utm_source=downloadpage&utm_medium=webapp&utm_campaign=downloadapp" onclick="ga('send', 'event','app', 'download');" ;="" style=margin-bottom:7px><img height=16px src=http://ssl.gstatic.com/android/market_images/web/favicon.ico>클립버드 설치하기</a><br><br><a href="https://play.google.com/store/apps/details?id=com.clipbirdapp.app"><img id=screen width=300px src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></a></div><script src=https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.time.min.js></script><script charset=utf-8>
+</style></head><body><header id=header1 class="tile g--2 no-margin-vertical bg--deep-purple color--white">가위바위보-클립버드</header><img style=display:none src=g1.png> <img style=display:none src=g2.png> <img style=display:none src=g3.png><div id=notice class="g--1 card no-margin-vertical bg--clouds" style=margin-bottom:10px><span id=noticetext>연결중입니다..(상대편의 입장을 기다립니다.)</span></div><div id=room style=width:100%;text-align:center><div id=you class=imageSub style="width: 128px; margin: 0 auto;display:none"><img id=canvasyou><div class=blackbg></div><div class=label>상대방</div></div><br><br><div id=me class=imageSub style="width: 50%;margin: 0 auto;width: 128px;display:none"><img id=canvasme><div class=blackbg></div><div id=melabel class=label>당신의 선택은?</div></div><div id=buttons style="display:table; margin: 0 auto"><button id=g1></button><button id=g2></button><button id=g3></button></div><input type=button id=restartButton value="재도전 요청" style="width: 128px; font-size: 20px; margin: 0 auto;display:none"></div><div id=downloadapp style=display:none class="g--1 tile no-margin-vertical"><div style=font-size:14pt;margin-bottom:7px>클립버드를 사용해보세요.</div>가위바위보 게임은 물론, 카톡이나 sms 대화창에서 파일을 쉽고 빠르게 무료로 첨부 할 수 있습니다.<br>카톡이나 SMS에서 지원하지 않는 mp3,문서등을 자유롭게 첨부해보세요.<br>(라인,비트윈 같은 메신져에서도 다 사용할 수 있습니다.)<br><a href="https://play.google.com/store/apps/details?id=com.clipbirdapp.app&utm_source=downloadpage&utm_medium=webapp&utm_campaign=downloadapp" onclick="ga('send', 'event','app', 'download');" ;="" style=margin-bottom:7px><img height=16px src=http://ssl.gstatic.com/android/market_images/web/favicon.ico>클립버드 설치하기</a><br><br><a href="https://play.google.com/store/apps/details?id=com.clipbirdapp.app"><img id=screen width=300px src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></a></div><script src=https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.time.min.js></script><script charset=utf-8>
 /*! @license Firebase v2.2.9
     License: https://www.firebase.com/terms/terms-of-service.html */
 (function() {var g,aa=this;function n(a){return void 0!==a}function ba(){}function ca(a){a.vb=function(){return a.uf?a.uf:a.uf=new a}}
@@ -536,7 +536,7 @@ var wait;
 	if(onlineSnap.val() !== null && onlineSnap.val()===true && me!=0){
 		self.ggbRef.child('player0/online').off('value',arguments.callee);
 		if( areyouready.hasObservers()){
-			console.log("33");areyouready.onNext(0);}
+			areyouready.onNext(0);}
 	}
 
 	if(onlineSnap.val() !== null &&self.playingState === Ggb.PlayingState.Watching ){
@@ -617,9 +617,18 @@ var wait;
     this.opponentPlayerRef = this.ggbRef.child('player' + (1 - playerNum));
     this.myBoard = this.boards[playerNum];
     this.myBoard.isMyBoard = true;
-
+	this.opponentPlayerRef.child('online').on('value',function (data){
+		
+		if(data.val()==null){
+			  Firebase.goOffline();
+		notice("상대방이 방을 나갔습니다. 생업으로 돌아갑시다.");	
+		hide("room");
+		}
+		
+	})
     // Clear our 'online' status when we disconnect so somebody else can join.
     this.myPlayerRef.child('online').onDisconnect().remove();
+	
 	 iamready.onNext(playerNum);
     // Detect when other player pushes rows to our board.
   
