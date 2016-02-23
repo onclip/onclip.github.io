@@ -664,19 +664,7 @@ var wait;
 var id=QueryString["id"];
 var sv=QueryString["sv"];
 
-	
-if(typeof id== "undefined") {
 
-	notice("--정보를 불러올수 없습니다.--");
-	
-}  
-else 
-	
-
-
-{
-  start(id,sv);
-}
 
 var youradom;
  function startGame(){
@@ -877,7 +865,7 @@ if(youradom)	youradom.dispose();
 	}
 	
 }
-
+(function() {
 
 $("g1").onclick=function () {
       send(1)
@@ -894,7 +882,24 @@ $("g3").onclick=function () {
     };
 
 
+	
+if(typeof id== "undefined") {
 
+	notice("--정보를 불러올수 없습니다.--");
+	
+}  
+else 
+	
+
+
+{
+  start(id,sv);
+}
+
+
+
+
+})();
 
 
 </script><div id=log></div><script>  
