@@ -607,7 +607,8 @@ function getMailtoUrl(to, subject, body) {
 var emailme=function(){
 	
 			
-	location.href=getMailtoUrl("본인의이메일주소","다운로드하세요", (timespan?(timespan+"이내에 다운받아야 합니다."  ):"")   +"  "+ location.href   );
+	location.href=getMailtoUrl("본인의이메일주소","다운로드하세요", (timespan?(timespan+"이내에 다운받아야 합니다."  ):"")  
+		+"\n"+ "http://d.clipbirdapp.com/q"+id );
   
 
 
