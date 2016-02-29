@@ -810,7 +810,7 @@ var ua=navigator.userAgent;
 var isChrome=ua.toLowerCase().indexOf("chrome") > -1;
 var isAndroid = ua.toLowerCase().indexOf("android") > -1;
 var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-var inapp =  ua.indexOf("KAKAOTALK")>=0;
+var inapp =  ua.indexOf("KAKAOTALK")>=0||(ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);;
 var isSamsungBrowser =ua.indexOf("SamsungBrowser")>=0;
 
 var isLG =ua.indexOf("; LG-")>=0;
