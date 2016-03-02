@@ -1,4 +1,4 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>그림공유</title><meta name=description content=Draw><meta property=og:image content=pattern.png><meta property=og:title content=그림판><meta property=og:description content="같이 그려보세요"><meta name=viewport content="width=device-width, initial-scale=1.0"><style>
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>그림공유</title><meta name=description content=Draw><meta property=og:image content=pattern.png><meta property=og:title content=그림판><meta property=og:description content="같이 그려보세요"><meta name=viewport content="width=device-width, initial-scale=1.0"><style>
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 html {
 	height: 100%;
@@ -686,25 +686,25 @@ var sv=QueryString["sv"];
 	var canvas = document.getElementById('drawCanvas');
 	var ctx = canvas.getContext('2d');
 	var color = document.querySelector(':checked').getAttribute('data-color');
-	var footh=50;
+	var footh=80;
 	var wide=document.documentElement.clientWidth/(document.documentElement.clientHeight-footh);
 	var w,h;
 	
-	if(wide>9.0/16.0){
+	if(wide>10.0/16.0){
 
 	canvas.height =h= Math.min(document.documentElement.clientHeight-footh, (window.innerHeight || 300)-footh);
-	canvas.width=w=canvas.height*9/16;
+	canvas.width=w=canvas.height*10/16;
 	
 	}
 	else{
 	canvas.width =w= Math.min(document.documentElement.clientWidth, window.innerWidth || 300);
-	canvas.height=h=canvas.width*16/9;
+	canvas.height=h=canvas.width*16/10;
 	
 
 	}
 
 	var h_=1600/h;
-	var w_=900/w;
+	var w_=1000/w;
 	
 	//canvas.width = Math.min(document.documentElement.clientWidth, window.innerWidth || 300);
 	//canvas.height = Math.min(document.documentElement.clientHeight, window.innerHeight || 300);
