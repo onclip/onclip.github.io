@@ -736,7 +736,7 @@ var sv=QueryString["sv"];
 	}, false);
 
 		document.getElementById('reset').addEventListener('click', function() {
-		if(confirm("모든 이미지가 사라집니다. 진행하시겠습니까? (단계별 삭제는 개발중이예요)"))	ref.child("draw").remove();
+		if(confirm("모든 이미지가 사라집니다. 진행하시겠습니까? (단계별 삭제는 준비중입니다.)"))	ref.child("draw").child("path").remove();
 	}, false);
 
 	
@@ -758,10 +758,10 @@ var sv=QueryString["sv"];
 	var ref = new Firebase("https://clipbird.firebaseio.com/"+sv+"/"+id);
 	  var userListRef = ref.child("user");
 	 var myUserRef = userListRef.push();
-	ref.child("draw").on('child_added', drawFromStream);
-	ref.on('child_removed',  function (data){
+	ref.child("draw").child("path").on('child_added', drawFromStream);
+	ref.child("draw").on('child_removed',  function (data){
 
-			if(data.key()=="draw")	  ctx.clearRect(0, 0, canvas.width, canvas.height);
+			if(data.key()=="path")	  ctx.clearRect(0, 0, canvas.width, canvas.height);
 			});
 
 	 var connectedRef = new Firebase("https://cstat.firebaseio.com//.info/connected");
@@ -801,7 +801,7 @@ var sv=QueryString["sv"];
 		
 	    }
 
-		ref.child("draw").push( data.color+"@"+str );
+		ref.child("draw").child("path").push( data.color+"@"+str );
 		
      }
 
