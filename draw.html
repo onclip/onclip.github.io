@@ -187,7 +187,7 @@ header div {
 		display: block;
 	}
 }	
-</style></head><body><header><div></div><div class=bubble><span id=occupancy>0</span> <span id=unit>명</span></div></header><section id=main><canvas id=drawCanvas width=300 height=300 style="background-color: white;">Canvas is not supported on this browser!</canvas><section id=colorSwatch><input type=radio name=color id=color01 data-color=gold checked=""><label for=color01></label> <input type=radio name=color id=color02 data-color=darkorange> <label for=color02></label> <input type=radio name=color id=color03 data-color=navy> <label for=color03></label> <input type=radio name=color id=color04 data-color=yellowgreen> <label for=color04></label> <input type=radio name=color id=color05 data-color=firebrick> <label for=color05></label> <input type=radio name=color id=color06 data-color=powderblue> <label for=color06></label></section></section><footer><div style=float:left;margin-left:10px;margin-right:10px;><a href=# onclick=feedback()>불편사항?-실시간답변!</a></div><div style=float:right;margin-left:10px;margin-right:10px;><a href="https://play.google.com/store/apps/details?id=com.clipbirdapp.app">클립버드-제공</a></div></footer><script charset=utf-8>
+</style></head><body><header><div></div><div class=bubble style=z-index:2><span id=occupancy>0</span> <span id=unit>명</span></div></header><section id=main><canvas id=drawCanvas width=300 height=300 style="background-color: white;">Canvas is not supported on this browser!</canvas><section id=colorSwatch><input type=radio name=color id=color01 data-color=gold checked=""><label for=color01></label> <input type=radio name=color id=color02 data-color=darkorange> <label for=color02></label> <input type=radio name=color id=color03 data-color=navy> <label for=color03></label> <input type=radio name=color id=color04 data-color=yellowgreen> <label for=color04></label> <input type=radio name=color id=color05 data-color=firebrick> <label for=color05></label> <input type=radio name=color id=color06 data-color=powderblue> <label for=color06></label></section></section><footer><div style=float:left;margin-left:10px;margin-right:10px;><a href=# onclick=feedback()>불편사항?-실시간답변!</a></div><div style=float:right;margin-left:10px;margin-right:10px;><a href="https://play.google.com/store/apps/details?id=com.clipbirdapp.app">클립버드-제공</a></div></footer><script charset=utf-8>
 /*! @license Firebase v2.2.9
     License: https://www.firebase.com/terms/terms-of-service.html */
 (function() {var g,aa=this;function n(a){return void 0!==a}function ba(){}function ca(a){a.vb=function(){return a.uf?a.uf:a.uf=new a}}
@@ -686,12 +686,13 @@ var sv=QueryString["sv"];
 	var canvas = document.getElementById('drawCanvas');
 	var ctx = canvas.getContext('2d');
 	var color = document.querySelector(':checked').getAttribute('data-color');
-	
-	var wide=document.documentElement.clientWidth/document.documentElement.clientHeight;
+	var footh=50;
+	var wide=document.documentElement.clientWidth/(document.documentElement.clientHeight-footh);
 	var w,h;
+	
 	if(wide>9.0/16.0){
 
-	canvas.height =h= Math.min(document.documentElement.clientHeight, window.innerHeight || 300);
+	canvas.height =h= Math.min(document.documentElement.clientHeight-footh, (window.innerHeight || 300)-footh);
 	canvas.width=w=canvas.height*9/16;
 	
 	}
