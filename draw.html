@@ -736,7 +736,7 @@ var sv=QueryString["sv"];
 	}, false);
 
 		document.getElementById('reset').addEventListener('click', function() {
-		ref.child("draw").remove();
+		if(confirm("���� �̹����� �������ϴ�. �����Ͻðڽ��ϱ�? (�ܰ躰 ������ �������̿���)"))	ref.child("draw").remove();
 	}, false);
 
 	
