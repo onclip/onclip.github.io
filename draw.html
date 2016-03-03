@@ -737,10 +737,10 @@ var sv=QueryString["sv"];
 
 		document.getElementById('reset').addEventListener('click', function() {
 		
-		if(path.length==0) return;
+		if(path.length==0){alert("더이상 지울 수 없습니다.(자신이 그린 것만 지울 수 있습니다.)"); return; }
 			
 		var h=path.pop();
-		if(h){ h.remove();} else {alert("자신이 그린 것만 지울 수 있습니다."); }
+		if(h){ h.remove();}  
 
 		
 	}, false);
