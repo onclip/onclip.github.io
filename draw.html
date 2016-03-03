@@ -736,9 +736,12 @@ var sv=QueryString["sv"];
 	}, false);
 
 		document.getElementById('reset').addEventListener('click', function() {
-	
+		
+		if(path.length==0) return;
+			
 		var h=path.pop();
-		if(h) h.remove();
+		if(h){ h.remove();} else {alert("자신이 그린 것만 지울 수 있습니다."); }
+
 		
 	}, false);
 
