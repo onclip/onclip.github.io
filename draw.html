@@ -185,7 +185,7 @@ header div {
 		display: block;
 	}
 }	
-</style></head><body><header><div></div><div class=bubble style=z-index:2><span id=occupancy>0</span> <span id=unit>명</span></div></header><section id=main><canvas id=drawCanvas width=300 height=300 style="background-color: white;">Canvas is not supported on this browser!</canvas><section id=colorSwatch><input type=radio name=color id=color01 data-color=gold checked=""><label for=color01></label> <input type=radio name=color id=color02 data-color=darkorange> <label for=color02></label> <input type=radio name=color id=color03 data-color=navy> <label for=color03></label> <input type=radio name=color id=color04 data-color=yellowgreen> <label for=color04></label> <input type=radio name=color id=color05 data-color=firebrick> <label for=color05></label> <input type=button id=reset value=백지화 style="height:30px; vertical-align: top;"></section></section><footer><div style=float:left;margin-left:10px;margin-right:10px;>생성후 7일간 보관됩니다.</div><div style=float:right;margin-left:10px;margin-right:10px;><a href=# onclick=openapplink()>클립버드-제공</a></div></footer><script charset=utf-8>
+</style></head><body><header><div></div><div class=bubble style=z-index:2><span id=occupancy>0</span> <span id=unit>명</span></div></header><section id=main><canvas id=drawCanvas width=300 height=300 style="background-color: white;">Canvas is not supported on this browser!</canvas><section id=colorSwatch><input type=radio name=color id=color01 data-color=gold checked=""><label for=color01></label> <input type=radio name=color id=color02 data-color=darkorange> <label for=color02></label> <input type=radio name=color id=color03 data-color=navy> <label for=color03></label> <input type=radio name=color id=color04 data-color=yellowgreen> <label for=color04></label> <input type=radio name=color id=color05 data-color=firebrick> <label for=color05></label> <input type=button id=reset value=획삭제 style="height:30px; vertical-align: top;"></section></section><footer><div style=float:left;margin-left:10px;margin-right:10px;>생성후 7일간 보관됩니다.</div><div style=float:right;margin-left:10px;margin-right:10px;><a href=# onclick=openapplink()>클립버드-제공</a></div></footer><script charset=utf-8>
 /*! @license Firebase v2.2.9
     License: https://www.firebase.com/terms/terms-of-service.html */
 (function() {var g,aa=this;function n(a){return void 0!==a}function ba(){}function ca(a){a.vb=function(){return a.uf?a.uf:a.uf=new a}}
@@ -728,7 +728,7 @@ var sv=QueryString["sv"];
 	ctx.strokeStyle = color;
 	ctx.lineWidth = '3';
 	ctx.lineCap = ctx.lineJoin = 'round';
-
+	var path=[];
 	/* Mouse and touch events */
 	
 	document.getElementById('colorSwatch').addEventListener('click', function() {
@@ -736,7 +736,10 @@ var sv=QueryString["sv"];
 	}, false);
 
 		document.getElementById('reset').addEventListener('click', function() {
-		if(confirm("모든 이미지가 사라집니다. 진행하시겠습니까? (단계별 삭제는 준비중입니다.)"))	ref.child("draw").child("path").remove();
+	
+		var h=path.pop();
+		if(h) h.remove();
+		
 	}, false);
 
 	
@@ -759,6 +762,22 @@ var sv=QueryString["sv"];
 	  var userListRef = ref.child("user");
 	 var myUserRef = userListRef.push();
 	ref.child("draw").child("path").on('child_added', drawFromStream);
+	ref.child("draw").child("path").on('child_removed', function(data){
+		
+		var key=data.key();
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		
+		for(var i=0; i<drawpath.length; i++) {
+			if(drawpath[i]) {
+			if(drawpath[i].key==key){
+					drawpath[i]=null;
+			} else 
+				drawOnCanvas(drawpath[i].color,drawpath[i].path);
+			}
+	    };
+
+	});
+
 	ref.child("draw").on('child_removed',  function (data){
 
 			if(data.key()=="path")	  ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -769,7 +788,13 @@ var sv=QueryString["sv"];
   connectedRef.on("value", function(isOnline) {
     if (isOnline.val()) {
       myUserRef.onDisconnect().remove();
-	   myUserRef.set("online");
+	   myUserRef.set("online",function(error) { 
+			if (error) 
+		 {
+			Firebase.goOffline();
+			if(confirm("존재하지않거나 만료된 공유이미지입니다.클립버드를 설치하여 새로 만들어 보시겠어요?"))openapplink();
+		 }
+		});
 
     }
    
@@ -799,9 +824,10 @@ var sv=QueryString["sv"];
 			if(plots[i].x)
 	    	str+=":"+plots[i].x+","+ plots[i].y;
 		
-	    }
-
-		ref.child("draw").child("path").push( data.color+"@"+str );
+	    };
+	var f=ref.child("draw").child("path").push(  data.color+"@"+myUserRef.key()+"@"+str );
+	drawpath.push({key:f.key(),color:data.color,path:plots});			
+	 path.push(f);
 		
      }
 
@@ -818,19 +844,22 @@ var sv=QueryString["sv"];
 	    }
 	    ctx.stroke();
     }
-
+	var drawpath=[];
     function drawFromStream(snapshot) {
 		if(!snapshot ) return;
 		 var data = snapshot.val().split("@");
-		 var plots=data[1].split(":");
+		 var user=data[1];
+		var mykey= myUserRef.key();
+		if(mykey==user) return;
+		 var plots=data[2].split(":");
 		var p=[];
 		for(var i=0; i<plots.length; i++) {
 			var cor=plots[i].split(",");
 				p[i]={x:cor[0],y:cor[1]};
 	    	
 	    }	
-			
-		drawOnCanvas(data[0], p);
+		drawpath.push({key:snapshot.key(),color:data[0],path:p});		
+		drawOnCanvas(data[0], p );
     }
     
  
@@ -859,7 +888,7 @@ var sv=QueryString["sv"];
 	function endDraw(e) {
 	  	e.preventDefault();
 	  	isActive = false;
-	  
+		
 	  	publish({
 	  		color: color,
 	  		plots: plots
