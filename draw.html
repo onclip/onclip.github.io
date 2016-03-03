@@ -660,7 +660,21 @@ U.prototype.We=function(a,b){x("Firebase.resetPassword",2,2,arguments.length);fg
 var openapplink;
 (function() {
 	/* Canvas */
-	
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() ;
+}
+var mykey = localStorage.getItem('mykey');
+if(!mykey){
+
+	mykey = localStorage.getItem('mykey');
+	localStorage.setItem('mykey', guid());
+}
+  
 		var QueryString = function () {
   var query_string = {};
   var query = window.location.search.substring(1);
@@ -728,7 +742,7 @@ var sv=QueryString["sv"];
 	ctx.strokeStyle = color;
 	ctx.lineWidth = '3';
 	ctx.lineCap = ctx.lineJoin = 'round';
-	var path=[];
+	
 	/* Mouse and touch events */
 	
 	document.getElementById('colorSwatch').addEventListener('click', function() {
@@ -737,10 +751,21 @@ var sv=QueryString["sv"];
 
 		document.getElementById('reset').addEventListener('click', function() {
 		
-		if(path.length==0){alert("더이상 지울 수 없습니다.(자신이 그린 것만 지울 수 있습니다.)"); return; }
+		var r;
+		for(var i=drawpath.length-1; i>=0; i--) {
+			 
+			if(drawpath[i]&& drawpath[i].user==mykey){
+					r= drawpath[i].key;
+					break;
+			}
+		}
 			
-		var h=path.pop();
-		if(h){ h.remove();}  
+	    
+		
+		if(!r){alert("더이상 지울 수 없습니다.(자신이 그린 것만 지울 수 있습니다.)"); return; }
+			
+		ref.child("draw").child("path").child(r).remove();
+		  
 
 		
 	}, false);
@@ -828,9 +853,8 @@ var sv=QueryString["sv"];
 	    	str+=":"+plots[i].x+","+ plots[i].y;
 		
 	    };
-	var f=ref.child("draw").child("path").push(  data.color+"@"+myUserRef.key()+"@"+str );
-	drawpath.push({key:f.key(),color:data.color,path:plots});			
-	 path.push(f);
+	var f=ref.child("draw").child("path").push(  data.color+"@"+mykey+"@"+str );
+	drawpath.push({key:f.key(),color:data.color,path:plots,user:mykey});			
 		
      }
 
@@ -852,8 +876,11 @@ var sv=QueryString["sv"];
 		if(!snapshot ) return;
 		 var data = snapshot.val().split("@");
 		 var user=data[1];
-		var mykey= myUserRef.key();
-		if(mykey==user) return;
+		var t=drawpath.length;
+		var k=snapshot.key();
+		if(drawpath[t-1]&&drawpath[t-1].key==k ) return;
+		if(drawpath[t-2]&&drawpath[t-2].key==k ) return;
+		if(drawpath[t-3]&&drawpath[t-3].key==k ) return;
 		 var plots=data[2].split(":");
 		var p=[];
 		for(var i=0; i<plots.length; i++) {
@@ -861,7 +888,7 @@ var sv=QueryString["sv"];
 				p[i]={x:cor[0],y:cor[1]};
 	    	
 	    }	
-		drawpath.push({key:snapshot.key(),color:data[0],path:p});		
+		drawpath.push({key:snapshot.key(),color:data[0],path:p,user:user});		
 		drawOnCanvas(data[0], p );
     }
     
