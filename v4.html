@@ -597,7 +597,6 @@ var filesize;
    var progress=new Array();
    var type="application/unknown";
    
- 
 	
 //    public static final int START = 0;
   //  public static final int COMPLETE = 10;
@@ -639,7 +638,6 @@ var list = {
 	'jpeg':'image/jpeg',
 	'jpg':'image/jpeg',
 	'js':'text/javascript',
-		'amr':'audio/amr',
 	'json':'application/json',
 	'm3u':'audio/x-mpegurl',
 	'm4a':'audio/mp4a-latm',
@@ -709,7 +707,7 @@ $(i).innerHTML = d;
 };
 
 var show=function(i){
-$(i).style.display ="inline";
+$(i).style.display ="";
 };
 
 
@@ -729,7 +727,7 @@ var checkComplete=function(){
 			Firebase.goOffline();
 			
 			// show("savebtn");
-			  html("noticetext","다운로드가 완료되었습니다."+ (isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.":""));
+			  html("noticetext","다운로드가 완료되었습니다."+ (isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.(기본으로 깔린 '다운로드'앱을 실행하시면 됩니다.)":""));
 			$("notice").classList.remove("bg--clouds");
 				
 			  $("notice").classList.add("bg--yellow");
@@ -1356,7 +1354,7 @@ var timeout1=null;
 					
 									progress[key-1]=val1;
 									var c=count(progress);
-									if(!chekpartstart&&!newwindow&&isFileSaverSupported&&state>=0){
+									if(max<=20*8&&!chekpartstart&&!newwindow&&isFileSaverSupported&&state>=0){
 										
 										chekpartstart=true;
 										checkpart();
@@ -1366,7 +1364,9 @@ var timeout1=null;
 									
 									if(max==c) {
 
-									
+											if(max>20&&state>=0){
+												downloadbigfile();	
+											} else 
 									
 											if(inapp&&isAndroid) {
 												notice(null);
@@ -1379,7 +1379,7 @@ var timeout1=null;
 											} 
 												
 									} else {
-										if(!inapp&&!isFileSaverSupported&&state>=0){
+										if(max>20*8 ||(!inapp&&!isFileSaverSupported&&state>=0)){
 											show("uploadrow");
 											notice("업로드가 완료되면 다운로드가 시작됩니다.");
 										
