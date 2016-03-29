@@ -1340,66 +1340,7 @@ var timeout1=null;
 	
 
 	
-	if(!(inapp&&isIOS) )	ref.child('progress').on("child_added", function(data,pdata) {
-												
-
-						if(data.exists())	{
-								
-		
-
-								var key=data.key();
-								var val1=data.val();
-								
-							 
-					
-									progress[key-1]=val1;
-									var c=count(progress);
-									if(max<=20*8&&!chekpartstart&&!newwindow&&isFileSaverSupported&&state>=0){
-										
-										chekpartstart=true;
-										checkpart();
-									} 
-									
-									
-									
-									if(max==c) {
-
-											if(max>20&&state>=0&&!chekpartstart){
-												downloadbigfile();	
-											} else 
-									
-											if(inapp&&isAndroid) {
-												notice(null);
-												//show("inappdownload");
-											} else 		if(!inapp&&!isFileSaverSupported&&state>=0){
-											
-												
-											timeout1=	setTimeout(downloadbigfile, 500);
-												
-											} 
-												
-									} else {
-										if(max>20*8 ||(!inapp&&!isFileSaverSupported&&state>=0)){
-											show("uploadrow");
-											notice("업로드가 완료되면 다운로드가 시작됩니다.");
-										
-										}
-										else {
-										//if(inapp)notice("크롬브라우져가 없으신가요? 크롬브라우져를 사용하시면 업로드와 동시에 다운로드 할 수 있습니다. 설치를 원하시지 않으시면 업로드가 완료될 때까지 잠시만 기다려 주세요.");
-										}
-									
-									}
-										html("upload", "분할파일"+ max+"개 중"+  c  + "개 업로드 완료");
-
-					 
-							
-
-								
-							
-						
-							}	
-																
-					});			
+	
 	
 	
 	ref.child('time').on("value", function(data) {
@@ -1444,6 +1385,68 @@ var timeout1=null;
 			 filesize=parseInt(data.val());
 			html('size',	"["+formatBytes(filesize,1)+"]");
 			ref.child('size').off("value",arguments.callee);
+				///-------------------------
+			if(!(inapp&&isIOS) )	ref.child('progress').on("child_added", function(data,pdata) {
+												
+
+						if(data.exists())	{
+								
+		
+
+								var key=data.key();
+								var val1=data.val();
+								
+							 
+					
+									progress[key-1]=val1;
+									var c=count(progress);
+									if( filesize <=1024*1024*5*20*8  &&!chekpartstart&&!newwindow&&isFileSaverSupported&&state>=0){
+										
+										chekpartstart=true;
+										checkpart();
+									} 
+									
+									
+									
+									if(max==c) {
+
+											if(filesize>1024*1024*5*20&&state>=0&&!chekpartstart){
+												downloadbigfile();	
+											} else 
+									
+											if(inapp&&isAndroid) {
+												notice(null);
+												//show("inappdownload");
+											} else 		if(!inapp&&!isFileSaverSupported&&state>=0){
+											
+												
+											timeout1=	setTimeout(downloadbigfile, 500);
+												
+											} 
+												
+									} else {
+										if(max>20*8 ||(!inapp&&!isFileSaverSupported&&state>=0)){
+											show("uploadrow");
+											notice("업로드가 완료되면 다운로드가 시작됩니다.");
+										
+										}
+										else {
+										//if(inapp)notice("크롬브라우져가 없으신가요? 크롬브라우져를 사용하시면 업로드와 동시에 다운로드 할 수 있습니다. 설치를 원하시지 않으시면 업로드가 완료될 때까지 잠시만 기다려 주세요.");
+										}
+									
+									}
+										html("upload", "분할파일"+ max+"개 중"+  c  + "개 업로드 완료");
+
+					 
+							
+
+								
+							
+						
+							}	
+																
+					});			
+				//-----------
 		}	
 		
 			});
