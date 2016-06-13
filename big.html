@@ -652,8 +652,8 @@ lambda.invoke({
 	 if(u.indexOf('http')==0) {	downloadurl(u); }
 	   else {
 
-		Rollbar.error(data.Payload.errorType, data.Payload);
-		if(data.Payload.errorType=="EntityTooSmall") {
+		Rollbar.error("mergeFile", data.Payload);
+		if(data.Payload.indexOf("EntityTooSmall")>=0) {
 
 			 notice("업로드에 문제가 있습니다. 보내신 분에게 다시 보내달라고 해주세요."); 
 		} else {
