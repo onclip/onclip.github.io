@@ -640,7 +640,7 @@ lambda.invoke({
 
   if (error) {
     console.log(error);
-	Rollbar.error("mergeFile", error);
+	Rollbar.error("mergeFile", error+"id:"+id);
 		 notice("오류가 발생했습니다.다시 시도해주세요."); 
 		show("retry");
 		
@@ -653,7 +653,7 @@ lambda.invoke({
 	 if(u.indexOf('http')==0) {	downloadurl(u); }
 	   else {
 
-		Rollbar.error("mergeFile", data.Payload);
+		Rollbar.error("mergeFile", data.Payload+"id:"+id);
 		if(data.Payload.indexOf("EntityTooSmall")>=0) {
 
 			 notice("업로드에 문제가 있습니다. 보내신 분에게 다시 보내달라고 해주세요."); 
@@ -840,7 +840,7 @@ var checksize = Rx.Observable.create(function (observer) {
   },
   function (err) {
 	   if(err!="expiretime"){
-		   Rollbar.error("Rx.Observable.zip", err);
+		   Rollbar.error("Rx.Observable.zip", err+"id:"+id);
 	   notice("오류가 발생했습니다.다시 시도해주세요."); 
 		show("retry");
 		show("downretry");
