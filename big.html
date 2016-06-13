@@ -274,7 +274,7 @@ U.prototype.removeUser=U.prototype.Ue;U.prototype.qe=function(a,b){x("Firebase.c
 U.prototype.pe=function(a,b){x("Firebase.changeEmail",2,2,arguments.length);fg("Firebase.changeEmail",1,a,!1);gg("Firebase.changeEmail",a,"oldEmail");gg("Firebase.changeEmail",a,"newEmail");gg("Firebase.changeEmail",a,"password");A("Firebase.changeEmail",2,b,!1);this.k.N.pe(a,b)};U.prototype.changeEmail=U.prototype.pe;
 U.prototype.We=function(a,b){x("Firebase.resetPassword",2,2,arguments.length);fg("Firebase.resetPassword",1,a,!1);gg("Firebase.resetPassword",a,"email");A("Firebase.resetPassword",2,b,!1);this.k.N.We(a,b)};U.prototype.resetPassword=U.prototype.We;})();
 
-</script><script src=https://sdk.amazonaws.com/js/aws-sdk-2.2.33.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.time.min.js></script><script charset=utf-8>
+</script><script src=https://sdk.amazonaws.com/js/aws-sdk-2.3.19.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.7/rx.time.min.js></script><script charset=utf-8>
 
 
 var filesize;
@@ -640,6 +640,7 @@ lambda.invoke({
 
   if (error) {
     console.log(error);
+	Rollbar.error("mergeFile", error);
 		 notice("오류가 발생했습니다.다시 시도해주세요."); 
 		show("retry");
 		
@@ -839,6 +840,7 @@ var checksize = Rx.Observable.create(function (observer) {
   },
   function (err) {
 	   if(err!="expiretime"){
+		   Rollbar.error("Rx.Observable.zip", err);
 	   notice("오류가 발생했습니다.다시 시도해주세요."); 
 		show("retry");
 		show("downretry");
