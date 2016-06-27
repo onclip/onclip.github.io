@@ -1,10 +1,49 @@
 <html>
 <script type="text/javascript">
 <!--
-	if(location.href.indexOf("/qg")>0) {location.href=location.href.replace("/qg","/ggbv1?sv=v2GGB&id=");}
-	else if(location.href.indexOf("/qp")>0) {location.href=location.href.replace("/qp","/draw?sv=v2draw&id=");}
-	else { 
-	if(location.href.indexOf("/q")>0) location.href=location.href.replace("/q","/v4?sv=v2&id=");}
+
+
+var langcodes=["en", "ko"];
+
+// Browser Language Redirect script
+// copyright 3rd January 2006, Stephen Chapman
+// permission to use this Javascript on your web page is granted
+// provided that all of the code in this script (with the sole exception
+// of the langcodes array entries) is used without any alteration
+
+var langCode = navigator.language || navigator.systemLanguage;
+var lang = langCode.toLowerCase(); 
+lang = lang.substr(0,2); 
+var dest = window.location.href; 
+
+if(dest.indexOf(".html")<0) dest+="index.html";
+
+var ndest="en";
+for (i=langcodes.length-1;i >= 0; i--){
+  if (lang==langcodes[i]){
+    ndest =lang.substr(0,2) ; 
+	break; 
+  }
+}
+//alert(dest.substr(0,dest.lastIndexOf('.')) + '-' + ndest + dest.substr(dest.lastIndexOf('.')));
+
+if(dest.indexOf("/r")>0)
+{
+	dest=dest.substr(0,dest.lastIndexOf('.')) + '-' + ndest + dest.substr(dest.lastIndexOf('.'));
+
+	location=dest.replace("/q","/v5?sv=v2&id=");
+} else 
+if(dest.indexOf("/q")>0)
+{
+	
+	location.href=location.href.replace("/q","/v4?sv=v2&id=");
+}
+
+  //-->
+
+
+
+	
 
 //-->
 </script>
