@@ -30,7 +30,7 @@ if(dest.indexOf("/r")>0)
 {
 	dest=dest.substr(0,dest.lastIndexOf('.')) + '-' + ndest + dest.substr(dest.lastIndexOf('.'));
 
-	location=dest.replace("/r","/v5?sv=v2&id=");
+	location=dest.replace("/r","/v5-"+ndest+"?sv=v2&id=");
 } else 
 if(dest.indexOf("/q")>0)
 {
