@@ -26,16 +26,16 @@ for (i=langcodes.length-1;i >= 0; i--){
 }
 //alert(dest.substr(0,dest.lastIndexOf('.')) + '-' + ndest + dest.substr(dest.lastIndexOf('.')));
 
-if(dest.indexOf("/r")>0)
-{
+//if(dest.indexOf("/r")>0)
+//{
 	//dest=dest.substr(0,dest.lastIndexOf('.')) + '-' + ndest + dest.substr(dest.lastIndexOf('.'));
 
-	location=dest.replace("/r","/v5-"+ndest+"?sv=v2&id=");
-} else 
+	
+//} else 
 if(dest.indexOf("/q")>0)
 {
-	
-	location.href=location.href.replace("/q","/v4?sv=v2&id=");
+	location=dest.replace("/q","/v5-"+ndest+"?sv=v2&id=");
+	//location.href=location.href.replace("/q","/v4?sv=v2&id=");
 }
 
   //-->
